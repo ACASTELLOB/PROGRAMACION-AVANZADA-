@@ -11,9 +11,13 @@ public class Tarea {
     int prioridad;
     Date fechaIni;
     Date fechaFin;
-    Boolean finalizada;
+    Boolean finalizada=false;
     Resultado resultadoEsperado;
     List<String> etiquetas;
 
-    public Tarea ()
+    public Tarea ( String titulo, Date fechaIni, Resultado resultadoEsperado){
+        this.titulo = titulo;
+        this.fechaIni = fechaIni;
+        this.resultadoEsperado= resultadoEsperado;
+    }
 }
