@@ -19,9 +19,9 @@ public class GestionDeProyectos {
         System.out.println("6.Listar las personas asignadas a un proyecto");
         System.out.println("7.Listar las tareas de un proyecto.");
         do {
-            System.out.print("\nElige una opcion (0..4): ");
+            System.out.print("\nElige una opcion (0..7): ");
             opcion = teclado.nextInt();
-        } while ( (opcion<0) || (opcion>4) );
+        } while ( (opcion<0) || (opcion>7) );
         teclado.nextLine(); // Elimina retorno de carro del buffer de entrada
         return opcion;
     }
@@ -33,12 +33,20 @@ public class GestionDeProyectos {
         do {
             opcion = menu(teclado);
             switch (opcion) {
+                case 0:
+                    System.out.println(" Cerramos el gestor");
+                    break;
+                case 1:
+                    System.out.print("Introduce el nombre del proyecto: ");
+                    String titulo = teclado.nextLine();
+                    Proyecto proyecto = new Proyecto(titulo);
+                case 2:
+
+
+
 
             }
         }while (opcion != 0);
-        Persona persona= new Persona();
-        Proyecto hola = new Proyecto();
-        hola.añadirPersona(persona);
 
     }
 
