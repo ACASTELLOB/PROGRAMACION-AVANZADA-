@@ -20,16 +20,12 @@ public class Proyecto {
 
     public void añadirTarea(Tarea tarea) { tareas.add(tarea);}
 
-    public void listarPersonas(){
-        for (int i = 0; i < personas.size(); i++){
-            System.out.println(personas.get(i).toString());
-        }
+    public List<Persona> listarPersonas(){
+        return personas;
     }
 
-    public void listarTareas(){
-        for (int i = 0; i < tareas.size(); i++){
-            tareas.get(i).toMyString();
-        }
+    public List<Tarea> listarTareas(){
+        return tareas;
     }
 
 }

@@ -37,17 +37,22 @@ public class Tarea {
         asignadas.remove(persona);
     }
 
-    public void toMyString(){
-        System.out.println("Titulo: "+ titulo);
-        System.out.println("Personas asignadas:");
+    public String toString(){
+        String tarea = ("Titulo: "+titulo+"\n");
+        tarea.concat("Personas asignadas: \n");
         for (int i = 0; i < asignadas.size(); i++){
-            System.out.println(asignadas.get(i).toString());
+            tarea.concat(asignadas.get(i).toString());
+            if(asignadas.get(i) == responsable){
+                tarea.concat("(RESPONSABLE)");
+            }
+            tarea.concat("\n");
         }
         if (finalizada){
-            System.out.println("Finalizada");
+            tarea.concat("Finalizada \n");
         }else{
-            System.out.println("Sin finalizar");
+            tarea.concat("Sin finalizar \n");
         }
 
+        return tarea;
     }
 }
