@@ -38,7 +38,7 @@ public class Tarea {
     }
 
     public void toMyString(){
-        System.out.println(titulo);
+        System.out.println("Titulo: "+ titulo);
         System.out.println("Personas asignadas:");
         for (int i = 0; i < asignadas.size(); i++){
             System.out.println(asignadas.get(i).toString());

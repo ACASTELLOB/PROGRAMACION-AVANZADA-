@@ -26,4 +26,10 @@ public class Proyecto {
         }
     }
 
+    public void listarTareas(){
+        for (int i = 0; i < tareas.size(); i++){
+            tareas.get(i).toMyString();
+        }
+    }
+
 }
