@@ -20,5 +20,10 @@ public class Proyecto {
 
     public void añadirTarea(Tarea tarea) { tareas.add(tarea);}
 
+    public void listarPersonas(){
+        for (int i = 0; i < personas.size(); i++){
+            System.out.println(personas.get(i).toString());
+        }
+    }
 
 }

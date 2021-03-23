@@ -13,4 +13,8 @@ public class Persona {
         this.correo = correo;
         tareasResponsable = new ArrayList<>();
     }
+
+    public String toString(){
+        return nombre+":"+ correo;
+    }
 }
