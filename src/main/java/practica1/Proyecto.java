@@ -17,4 +17,8 @@ public class Proyecto {
     public void añadirPersona(Persona persona){
         personas.add(persona);
     }
+
+    public void añadirTarea(Tarea tarea) { tareas.add(tarea);}
+
+
 }
