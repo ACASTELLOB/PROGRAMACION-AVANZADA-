@@ -26,4 +26,15 @@ public class Proyecto {
         }
     }
 
+    public Boolean finalizarTarea(String titulo){
+        for(Tarea elem:tareas){
+            if(elem.titulo.equals(titulo)){
+                elem.finalizar();
+                return true;
+            }
+        }
+        return false;
+
+    }
+
 }
