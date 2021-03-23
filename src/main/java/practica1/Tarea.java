@@ -10,13 +10,13 @@ public class Tarea {
     List<Persona> asignadas;
     Persona responsable;
     int prioridad;
-    Date fechaIni;
+    int fechaIni;
     Date fechaFin;
     Boolean finalizada=false;
     Resultado resultadoEsperado;
     List<String> etiquetas;
 
-    public Tarea ( String titulo, Date fechaIni, Resultado resultadoEsperado){
+    public Tarea (String titulo, int fechaIni, Resultado resultadoEsperado){
         this.titulo = titulo;
         this.fechaIni = fechaIni;
         this.resultadoEsperado= resultadoEsperado;
