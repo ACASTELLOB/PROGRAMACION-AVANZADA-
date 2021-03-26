@@ -11,4 +11,9 @@ public class Documentacion extends Resultado {
         this.numPaginas = numPaginas;
         this.espacioDisco = espacioDisco;
     }
+
+    @Override
+    public String toString() {
+        return "Resultado:\n" + "identificador=" + identificador + '\n' + "horas=" + horas + "\n" + "interno=" + interno + "\n" + "formato=" + formato + '\n' + "Paginas=" + numPaginas + "\n" + "Espacio en disco=" + espacioDisco;
+    }
 }

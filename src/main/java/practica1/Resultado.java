@@ -5,12 +5,10 @@ public class Resultado {
     int horas;
     boolean interno;
 
-    public Resultado() {
-    }
-
     public Resultado(String identificador, int horas, boolean interno) {
         this.identificador = identificador;
         this.horas = horas;
         this.interno = interno;
     }
+
 }

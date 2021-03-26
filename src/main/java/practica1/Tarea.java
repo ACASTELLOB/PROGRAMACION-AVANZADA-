@@ -53,6 +53,8 @@ public class Tarea {
             tarea.concat("Sin finalizar \n");
         }
 
+        tarea.concat(resultadoEsperado.toString());
+
         return tarea;
     }
 }

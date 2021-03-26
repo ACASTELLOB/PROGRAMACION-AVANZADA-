@@ -11,4 +11,9 @@ public class PagWeb extends Resultado{
         this.lenguaje = lenguaje;
         this.backEnd = backEnd;
     }
+
+    @Override
+    public String toString() {
+        return "Resultado:\n" + "identificador=" + identificador + '\n' + "horas=" + horas + "\n" + "interno=" + interno + "\n" + "estatica=" + estatica + '\n' + "lenguaje=" + lenguaje + "\n" + "backEnd=" + backEnd;
+    }
 }
