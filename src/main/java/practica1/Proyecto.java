@@ -38,8 +38,30 @@ public class Proyecto {
         return false;
 
     }
-    public Boolean añadirEliminarPersona(String nombrePersona, String tituloTarea){
+    public String añadirEliminarPersona(String nombrePersona, String tituloTarea){
+        Persona persona= null;
+        for(Persona elem:personas) {
+            if (elem.equals(nombrePersona))
+                persona = elem;
+        }
+        if(persona==null){
+            return "La persona no esta dada de alta ene l proyecto";
 
+        }else{
+            for(Tarea elem:tareas){
+                if(tituloTarea.equals(elem.titulo)){
+                    if(elem.asignadas.contains(persona)){
+                        elem.asignadas.remove(persona);
+                        return "Se ha eliminado a la persona del proyecto";
+                    }
+                    else{
+                        elem.asignadas.add(persona);
+                        return "Se ha añadido a la persona al proyecto";
+                    }
+                }
+            }
+        }
+        return "no existe la tarea";
     }
 
 
