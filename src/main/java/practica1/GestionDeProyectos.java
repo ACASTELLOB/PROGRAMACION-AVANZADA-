@@ -19,7 +19,7 @@ public class GestionDeProyectos {
         System.out.println("5.Listar las personas asignadas a un proyecto");
         System.out.println("6.Listar las tareas de un proyecto.");
         do {
-            System.out.print("\nElige una opcion (0..7): ");
+            System.out.print("\nElige una opcion (0..6): ");
             opcion = teclado.nextInt();
         } while ( (opcion<0) || (opcion>7) );
         teclado.nextLine(); // Elimina retorno de carro del buffer de entrada
@@ -29,30 +29,31 @@ public class GestionDeProyectos {
 
     public static void main(String[] args){
         Scanner teclado = new Scanner(System.in);
+        EntradaSalida EntSal = new EntradaSalida();
         System.out.print("Introduce el nombre del proyecto: ");
-        String titulo = teclado.nextLine();
+        String titulo = EntSal.leer();
         Proyecto proyecto = new Proyecto(titulo);
         int opcion;
         do {
             opcion = menu(teclado);
             switch (opcion) {
                 case 0:
-                    System.out.println(" Cerramos el gestor");
+                    EntSal.mostrar("Cerramos el gestor");
                     break;
                 case 1:
-                    System.out.println("Introduce el nombre de la persona: ");
-                    String nombre = teclado.nextLine();
-                    System.out.println("Introduce el correo de la persona: ");
-                    String correo = teclado.nextLine();
+                    EntSal.mostrar("Introduce el nombre de la persona");
+                    String nombre = EntSal.leer();
+                    EntSal.mostrar("Introduce el correo de la persona: ");
+                    String correo = EntSal.leer();
                     Persona persona = new Persona(nombre, correo);
                     proyecto.añadirPersona(persona);
                     break;
                 case 2:
                     Date fecha= new Date();
-                    System.out.print("Introduce el título de la tarea");
-                    String tituloTarea =teclado.nextLine();
-                    System.out.println("Introduce el tipo de resultado: D para documentación, W para web, P para programa: ");
-                    String tipoResultado= teclado.nextLine();
+                    EntSal.mostrar("Introduce el título de la tarea");
+                    String tituloTarea =EntSal.leer();
+                    EntSal.mostrar("Introduce el tipo de resultado: D para documentación, W para web, P para programa: ");
+                    String tipoResultado= EntSal.leer();
                     if(tipoResultado.equals("D")){
                         Documentacion documento =new Documentacion();
                         Tarea tarea =new Tarea(tituloTarea,fecha.getDay(),documento );
@@ -71,21 +72,21 @@ public class GestionDeProyectos {
                     }
                     break;
                 case 3:
-                    System.out.println("Introduce el título de la tarea:");
-                    String Finalizada= teclado.nextLine();
+                    EntSal.mostrar("Introduce el título de la tarea:");
+                    String Finalizada= EntSal.leer();
                     Boolean hecha = proyecto.finalizarTarea(Finalizada);
                     if (hecha){
-                        System.out.println("Tarea Finalizada");
+                        EntSal.mostrar("Tarea Finalizada");
                     }
                     else{
-                        System.out.println("No se encuentra el titulo de la tarea");
+                        EntSal.mostrar("No se encuentra el titulo de la tarea");
                     }
-
-
-
-
-
-
+                    break;
+                case 4:
+                    EntSal.mostrar("Introudce el nombre de la persona");
+                    String nombrePersona= EntSal.leer();
+                    EntSal.mostrar("Introduce el titulo de la tarea donde la quieras añadir o eliminar:");
+                    String tituloAñadirEliminar= EntSal.leer();
             }
         }while (opcion != 0);
 

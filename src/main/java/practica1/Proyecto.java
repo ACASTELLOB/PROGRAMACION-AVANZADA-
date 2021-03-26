@@ -38,5 +38,9 @@ public class Proyecto {
         return false;
 
     }
+    public Boolean añadirEliminarPersona(String nombrePersona, String tituloTarea){
+
+    }
+
 
 }
