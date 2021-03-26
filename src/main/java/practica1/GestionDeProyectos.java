@@ -56,16 +56,30 @@ public class GestionDeProyectos {
                     if(tipoResultado.equals("D")){
                         Documentacion documento =new Documentacion();
                         Tarea tarea =new Tarea(tituloTarea,fecha.getDay(),documento );
+                        proyecto.añadirTarea(tarea);
                     }
                     else if(tipoResultado.equals("W")){
                         PagWeb web = new PagWeb();
                         Tarea tarea =new Tarea(tituloTarea,fecha.getDay(), web);
+                        proyecto.añadirTarea(tarea);
+
+                    }
+                    else {
+                        Programa prog = new Programa();
+                        Tarea tarea = new Tarea(tituloTarea, fecha.getDay(), prog);
+                        proyecto.añadirTarea(tarea);
+                    }
+                    break;
+                case 3:
+                    System.out.println("Introduce el título de la tarea:");
+                    String Finalizada= teclado.nextLine();
+                    Boolean hecha = proyecto.finalizarTarea(Finalizada);
+                    if (hecha){
+                        System.out.println("Tarea Finalizada");
                     }
                     else{
-                        Programa prog = new Programa();
-                        Tarea tarea =new Tarea(tituloTarea,fecha.getDay(), prog);
+                        System.out.println("No se encuentra el titulo de la tarea");
                     }
-
 
 
 
