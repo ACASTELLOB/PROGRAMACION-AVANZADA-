@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Proyecto {
     String nombre;
-    List<Tarea> tareas;
-    List<Persona> personas;
+    ArrayList<Tarea> tareas;
+    ArrayList<Persona> personas;
 
     public Proyecto (String nombre){
         this.nombre=nombre;
@@ -20,7 +20,7 @@ public class Proyecto {
 
     public void añadirTarea(Tarea tarea) { tareas.add(tarea);}
 
-    public List<Persona> listarPersonas(){
+    public ArrayList<Persona> listarPersonas(){
         return personas;
     }
 
@@ -45,7 +45,7 @@ public class Proyecto {
                 persona = elem;
         }
         if(persona==null){
-            return "La persona no esta dada de alta ene l proyecto";
+            return "La persona no esta dada de alta en el proyecto";
 
         }else{
             for(Tarea elem:tareas){
