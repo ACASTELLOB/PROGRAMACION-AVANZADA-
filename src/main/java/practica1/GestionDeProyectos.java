@@ -32,7 +32,7 @@ public class GestionDeProyectos {
                     String tituloTarea =EntSal.leer();
                     EntSal.mostrar("Introduce el tipo de resultado: D para documentación, W para web, P para programa: ");
                     String tipoResultado= EntSal.leer();
-                    if(tipoResultado.equals("D")){
+                    /*if(tipoResultado.equals("D")){
                         Documentacion documento =new Documentacion();
                         Tarea tarea =new Tarea(tituloTarea,fecha.getDay(),documento );
                         proyecto.añadirTarea(tarea);
@@ -47,7 +47,7 @@ public class GestionDeProyectos {
                         Programa prog = new Programa();
                         Tarea tarea = new Tarea(tituloTarea, fecha.getDay(), prog);
                         proyecto.añadirTarea(tarea);
-                    }
+                    } */
                     break;
                 case 3:
                     EntSal.mostrar("Introduce el título de la tarea:");

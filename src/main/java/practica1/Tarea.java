@@ -10,15 +10,16 @@ public class Tarea {
     List<Persona> asignadas;
     Persona responsable;
     int prioridad;
-    int fechaIni;
+    Date fechaIni;
     Date fechaFin;
     Boolean finalizada=false;
     Resultado resultadoEsperado;
     List<String> etiquetas;
 
-    public Tarea (String titulo, int fechaIni, Resultado resultadoEsperado){
+    public Tarea (String titulo, Resultado resultadoEsperado, int prioridad){
         this.titulo = titulo;
-        this.fechaIni = fechaIni;
+        this.prioridad = prioridad;
+        this.fechaIni = new Date();
         this.resultadoEsperado= resultadoEsperado;
         asignadas = new ArrayList<Persona>();
         etiquetas = new ArrayList<String>();
@@ -26,6 +27,7 @@ public class Tarea {
 
     public Boolean finalizar(){
         finalizada = true;
+        this.fechaFin = new Date();
         return finalizada;
     }
 

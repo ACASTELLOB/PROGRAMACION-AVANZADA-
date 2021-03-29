@@ -1,12 +1,14 @@
 package practica1;
 
+import com.sun.source.tree.ArrayAccessTree;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Proyecto {
     String nombre;
-    List<Tarea> tareas;
-    List<Persona> personas;
+    ArrayList<Tarea> tareas;
+    ArrayList<Persona> personas;
 
     public Proyecto (String nombre){
         this.nombre=nombre;
@@ -20,7 +22,7 @@ public class Proyecto {
 
     public void añadirTarea(Tarea tarea) { tareas.add(tarea);}
 
-    public List<Persona> listarPersonas(){
+    public ArrayList<Persona> listarPersonas(){
         return personas;
     }
 
@@ -39,7 +41,7 @@ public class Proyecto {
 
     }
     public Boolean añadirEliminarPersona(String nombrePersona, String tituloTarea){
-
+        return true;
     }
 
 
