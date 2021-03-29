@@ -59,6 +59,7 @@ public class GestionDeProyectos {
                         proyecto.añadirTarea(tarea);
                     }
                     else if(tipoResultado.equals("W")){
+                        //hola
                         PagWeb web = new PagWeb();
                         Tarea tarea =new Tarea(tituloTarea,web,prioridad);
                         proyecto.añadirTarea(tarea);
