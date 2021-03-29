@@ -65,7 +65,6 @@ public class GestionDeProyectos {
                     String nombrePersona= EntSal.leer();
                     EntSal.mostrar("Introduce el titulo de la tarea donde la quieras añadir o eliminar:");
                     String tituloProyecto= EntSal.leer();
-                    EntSal.mostrar(proyecto.añadirEliminarPersona(nombrePersona,tituloProyecto));
                     break;
                 case 5:
                     for(Persona elem:proyecto.personas){

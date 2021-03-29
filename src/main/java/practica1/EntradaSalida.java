@@ -1,5 +1,6 @@
 package practica1;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class EntradaSalida {
@@ -9,6 +10,7 @@ public class EntradaSalida {
     public EntradaSalida(){
         teclado = new Scanner(System.in);
     }
+
     public int menu() {
         int opcion;
         System.out.println("\n\n");
@@ -30,12 +32,41 @@ public class EntradaSalida {
         return opcion;
     }
 
-    public String leer(){
-        String titulo = teclado.nextLine();
-        return titulo;
-    }
-    public void mostrar(String texto){
-        System.out.println(texto);
+    public String leerString(){
+        String cadena = teclado.nextLine();
+        return cadena;
     }
 
+    public int leerInt(){
+        int num = teclado.nextInt();
+        return num;
+    }
+
+    public void mostrarNombre(){
+        System.out.println("Escribe nombre de la persona:");
+    }
+
+    public void mostrarCorreo(){
+        System.out.println("Escribe correo de la persona:");
+    }
+
+    public void mostrarTitulo(){
+        System.out.println("Escribe titulo de la Tarea");
+    }
+
+    public void mostrarPrioridad(){
+        System.out.println("Escribe prioridad de la Tarea");
+    }
+
+    public void mostrarIdentificador(){
+        System.out.println("Escribe identificador para el resultadoo");
+    }
+
+    public void mostrarIdentificador(){
+        System.out.println("Escribe identificador para el resultadoo");
+    }
+
+    public void mostrar(){
+        System.out.println("Escribe identificador para el resultadoo");
+    }
 }
