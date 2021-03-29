@@ -32,22 +32,44 @@ public class GestionDeProyectos {
                     String tituloTarea =EntSal.leer();
                     EntSal.mostrar("Introduce el tipo de resultado: D para documentación, W para web, P para programa: ");
                     String tipoResultado= EntSal.leer();
-                    /*if(tipoResultado.equals("D")){
-                        Documentacion documento =new Documentacion();
-                        Tarea tarea =new Tarea(tituloTarea,fecha.getDay(),documento );
+                    EntSal.mostrar("Introduce la prioridad de la tarea");
+                    int prioridad=EntSal.leerInt();
+                    if(tipoResultado.equals("D")){
+
+
+                        EntSal.mostrar("Introduce el identificador del documento");
+                        String ident=EntSal.leer();
+                        EntSal.mostrar("Introduce el formato del documento");
+                        String format= EntSal.leer();
+                        EntSal.mostrar("Introduce las horas");
+                        int horas=EntSal.leerInt();
+                        EntSal.mostrar("Introduce el número de páginas");
+                        int pag= EntSal.leerInt();
+                        EntSal.mostrar("Introduce el espacio en disco para tu documento");
+                        int esp=EntSal.leerInt();
+                        EntSal.mostrar("Quieres que sea interno el resultado si es que sí, escribe S, sino escribe N");
+                        String interno=EntSal.leer();
+                        boolean esInterno=false;
+                        if (interno.equals("S")){
+                            esInterno=true;
+                        }
+
+                        Documentacion documento =new Documentacion(ident,horas,esInterno,format,pag,esp );
+                        Tarea tarea =new Tarea(tituloTarea,documento, prioridad);
                         proyecto.añadirTarea(tarea);
                     }
                     else if(tipoResultado.equals("W")){
+                        //hola
                         PagWeb web = new PagWeb();
-                        Tarea tarea =new Tarea(tituloTarea,fecha.getDay(), web);
+                        Tarea tarea =new Tarea(tituloTarea,web,prioridad);
                         proyecto.añadirTarea(tarea);
 
                     }
                     else {
                         Programa prog = new Programa();
-                        Tarea tarea = new Tarea(tituloTarea, fecha.getDay(), prog);
+                        Tarea tarea = new Tarea(tituloTarea,  prog, prioridad);
                         proyecto.añadirTarea(tarea);
-                    } */
+                    }
                     break;
                 case 3:
                     EntSal.mostrar("Introduce el título de la tarea:");
