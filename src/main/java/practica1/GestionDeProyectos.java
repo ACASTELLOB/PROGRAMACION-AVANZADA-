@@ -4,7 +4,6 @@ import java.util.Scanner;
 import java.util.Date;
 public class GestionDeProyectos {
 
-
     public static void main(String[] args){
 
         EntradaSalida EntSal = new EntradaSalida();
@@ -34,8 +33,8 @@ public class GestionDeProyectos {
                     String tipoResultado= EntSal.leer();
                     EntSal.mostrar("Introduce la prioridad de la tarea");
                     int prioridad=EntSal.leerInt();
-                    if(tipoResultado.equals("D")){
 
+                    if(tipoResultado.equals("D")){
 
                         EntSal.mostrar("Introduce el identificador del documento");
                         String ident=EntSal.leer();
@@ -50,6 +49,7 @@ public class GestionDeProyectos {
                         EntSal.mostrar("Quieres que sea interno el resultado si es que sí, escribe S, sino escribe N");
                         String interno=EntSal.leer();
                         boolean esInterno=false;
+
                         if (interno.equals("S")){
                             esInterno=true;
                         }
@@ -99,7 +99,6 @@ public class GestionDeProyectos {
 
             }
         }while (opcion != 0);
-
     }
 
 }
