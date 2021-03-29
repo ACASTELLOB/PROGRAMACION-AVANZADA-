@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Proyecto {
     String nombre;
-    ArrayList<Tarea> tareas;
-    ArrayList<Persona> personas;
+    List<Tarea> tareas;
+    List<Persona> personas;
 
     public Proyecto (String nombre){
         this.nombre=nombre;
@@ -20,7 +20,7 @@ public class Proyecto {
 
     public void añadirTarea(Tarea tarea) { tareas.add(tarea);}
 
-    public ArrayList<Persona> listarPersonas(){
+    public List<Persona> listarPersonas(){
         return personas;
     }
 
@@ -36,33 +36,31 @@ public class Proyecto {
             }
         }
         return false;
-
     }
-    public String añadirEliminarPersona(String nombrePersona, String tituloTarea){
+
+    public Boolean añadirEliminarPersona(String nombrePersona, String tituloTarea){
         Persona persona= null;
         for(Persona elem:personas) {
-            if (elem.equals(nombrePersona))
+            if (elem.nombre.equals(nombrePersona))
                 persona = elem;
         }
         if(persona==null){
-            return "La persona no esta dada de alta en el proyecto";
-
+            return false;
         }else{
             for(Tarea elem:tareas){
                 if(tituloTarea.equals(elem.titulo)){
                     if(elem.asignadas.contains(persona)){
                         elem.asignadas.remove(persona);
-                        return "Se ha eliminado a la persona del proyecto";
+                        return false;
                     }
                     else{
                         elem.asignadas.add(persona);
-                        return "Se ha añadido a la persona al proyecto";
+                        return true;
                     }
                 }
             }
         }
-        return "no existe la tarea";
+        return false;
     }
-
 
 }
