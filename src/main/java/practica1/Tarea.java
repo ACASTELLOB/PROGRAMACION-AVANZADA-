@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Tarea {
+public class Tarea implements tieneLista<Persona>{
     String titulo;
     String descripcion;
     List<Persona> asignadas;
@@ -23,6 +23,11 @@ public class Tarea {
         this.resultadoEsperado= resultadoEsperado;
         asignadas = new ArrayList<Persona>();
         etiquetas = new ArrayList<String>();
+    }
+
+    public List<Persona> getLista(){
+
+        return asignadas;
     }
 
     public Boolean finalizar(){
