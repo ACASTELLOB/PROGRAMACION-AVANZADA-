@@ -14,6 +14,4 @@ public class UtilidadesParaListas<E>{
         return res;
     }
 
-
-
 }
