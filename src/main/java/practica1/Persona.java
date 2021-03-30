@@ -3,7 +3,7 @@ package practica1;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Persona {
+public class Persona implements tieneLista<Tarea> {
     String nombre;
     String correo;
     List<Tarea> tareasResponsable;
@@ -12,6 +12,11 @@ public class Persona {
         this.nombre = nombre;
         this.correo = correo;
         tareasResponsable = new ArrayList<>();
+    }
+
+    @Override
+    public List<Tarea> getLista() {
+        return tareasResponsable;
     }
 
     public String toString(){
