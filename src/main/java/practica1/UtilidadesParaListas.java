@@ -1,13 +1,17 @@
 package practica1;
 
-public class UtilidadesParaListas<E>{
+import java.util.ArrayList;
+import java.util.List;
 
-    public static <T,E extends tieneClave<T>> Boolean claveUnica(E elem, tieneLista<E> objetoConLista) {
-        for (E aux : objetoConLista.getLista()) {
-            if (aux.getClave().equals(elem.getClave())) {
-                return false;
+public class UtilidadesParaListas<E>{
+    public static <E extends tieneLista<E>> List<E> elementosConListaVacia(List<E> lista){
+        List<E> res= new ArrayList<>();
+        for(E elem:lista) {
+            if (elem.getLista().size() == 0) {
+                res.add(elem);
             }
         }
-        return true;
+        return res;
     }
+
 }
