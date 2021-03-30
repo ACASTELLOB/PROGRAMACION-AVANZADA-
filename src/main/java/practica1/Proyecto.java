@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Proyecto {
     String nombre;
-    ArrayList<Tarea> tareas;
-    ArrayList<Persona> personas;
+    List<Tarea> tareas;
+    List<Persona> personas;
 
     public Proyecto (String nombre){
         this.nombre=nombre;
@@ -20,7 +20,7 @@ public class Proyecto {
 
     public void añadirTarea(Tarea tarea) { tareas.add(tarea);}
 
-    public ArrayList<Persona> listarPersonas(){
+    public List<Persona> listarPersonas(){
         return personas;
     }
 
