@@ -3,7 +3,7 @@ package practica1;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Persona implements tieneLista<Tarea> {
+public class Persona implements tieneLista<Tarea>, tieneClave<String> {
     String nombre;
     String correo;
     List<Tarea> tareasResponsable;
@@ -21,5 +21,10 @@ public class Persona implements tieneLista<Tarea> {
 
     public String toString(){
         return nombre+":"+ correo;
+    }
+
+    @Override
+    public String getClave() {
+        return nombre;
     }
 }

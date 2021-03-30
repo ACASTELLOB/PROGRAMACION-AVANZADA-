@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Tarea implements tieneLista<Persona>{
+public class Tarea implements tieneLista<Persona>, tieneClave<String>{
     String titulo;
     String descripcion;
     List<Persona> asignadas;
@@ -63,5 +63,10 @@ public class Tarea implements tieneLista<Persona>{
         tarea.concat(resultadoEsperado.toString());
 
         return tarea;
+    }
+
+    @Override
+    public String getClave() {
+        return titulo;
     }
 }

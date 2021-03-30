@@ -2,10 +2,12 @@ package practica1;
 
 public class UtilidadesParaListas<E>{
 
-    public static <E extends tieneClave<E>> Boolean claveUnica(E elem, E objetoConlista){
-        for(E aux:objetoConlista.){
-
+    public static <T,E extends tieneClave<T>> Boolean claveUnica(E elem, tieneLista<E> objetoConLista){
+        for(E aux:objetoConLista.getLista()){
+            if(aux.getClave().equals(elem.getClave())){
+                return false;
+            }
         }
+        return true;
     }
-
 }
