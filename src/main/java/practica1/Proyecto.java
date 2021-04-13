@@ -1,9 +1,10 @@
 package practica1;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Proyecto {
+public class Proyecto implements Serializable {
     String nombre;
     List<Tarea> tareas;
     List<Persona> personas;

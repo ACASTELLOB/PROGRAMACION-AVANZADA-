@@ -1,5 +1,6 @@
 package practica1;
 
+import java.io.*;
 import java.util.Scanner;
 import java.util.Date;
 public class GestionDeProyectos {
@@ -131,6 +132,28 @@ public class GestionDeProyectos {
                     for(Tarea elem:proyecto.tareas){
                         System.out.println(elem.toString());
                     }
+                case 7:
+                    try {
+                        FileOutputStream fos = new FileOutputStream("proyecto.bin");
+                        ObjectOutputStream oos = new ObjectOutputStream(fos);
+                        oos.writeObject(proyecto);
+                        oos.close();
+                    }catch (IOException e){
+                        System.out.println("Error al guardar el proyecto");
+                    }
+                    break;
+                case 8:
+                    try {
+                        FileInputStream fis = new FileInputStream("proyecto.bin");
+                        ObjectInputStream ois = new ObjectInputStream(fis);
+                        proyecto = (Proyecto)ois.readObject();
+                        ois.close();
+                    }catch (IOException e){
+                        System.out.println("No se ha encontrado el fichero");
+                    }catch (ClassNotFoundException ce){
+                        System.out.println("No se ha encontrado la clase necesaria para cargar el fichero");
+                    }
+                    break;
 
             }
         }while (opcion != 0);

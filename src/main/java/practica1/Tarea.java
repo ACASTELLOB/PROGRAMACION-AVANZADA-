@@ -1,10 +1,11 @@
 package practica1;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Tarea implements tieneLista<Persona>, tieneClave<String>{
+public class Tarea implements tieneLista<Persona>, tieneClave<String>, Serializable {
     String titulo;
     String descripcion;
     List<Persona> asignadas;

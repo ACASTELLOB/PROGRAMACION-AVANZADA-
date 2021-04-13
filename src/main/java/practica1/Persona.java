@@ -1,9 +1,10 @@
 package practica1;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Persona implements tieneLista<Tarea>, tieneClave<String> {
+public class Persona implements tieneLista<Tarea>, tieneClave<String>, Serializable{
     String nombre;
     String correo;
     List<Tarea> tareasResponsable;
