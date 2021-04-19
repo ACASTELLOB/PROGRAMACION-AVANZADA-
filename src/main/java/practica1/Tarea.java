@@ -65,7 +65,7 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
         }else{
             tarea.append("Sin finalizar \n");
         }
-
+        tarea.append(descripcion);
         tarea.append(resultadoEsperado.toString());
 
         return tarea.toString();

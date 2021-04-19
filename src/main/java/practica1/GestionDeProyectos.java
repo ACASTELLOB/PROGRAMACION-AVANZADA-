@@ -66,7 +66,12 @@ public class GestionDeProyectos {
                             }
                             break;
                         case 2:
-                            introducirTarea(proyecto, teclado);
+                            try{
+                                introducirTarea(proyecto, teclado);
+                            }catch (TareaExcepcion e){
+                                System.err.printf(e.getMessage());
+                            }
+
                             break;
 
                         case 3:

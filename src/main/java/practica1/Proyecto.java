@@ -30,7 +30,7 @@ public class Proyecto implements Serializable {
     public void añadirTarea(Tarea tarea) {
         for(Tarea elem:tareas){
             if(tarea.titulo.equals(elem.titulo)){
-                throw new TareaExcepcion();
+                throw new TareaExcepcion("La tarea ya existe");
             }
         }
         tareas.add(tarea);
