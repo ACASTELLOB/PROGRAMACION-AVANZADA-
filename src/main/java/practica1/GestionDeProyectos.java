@@ -1,5 +1,7 @@
 package practica1;
 
+import practica1.excepciones.PersonasException;
+
 import java.io.*;
 import java.util.Scanner;
 import java.util.Date;
@@ -46,7 +48,11 @@ public class GestionDeProyectos {
                     System.out.println("Introduce el correo de la persona: ");
                     String correo = teclado.nextLine();
                     Persona persona = new Persona(nombre, correo);
-                    proyecto.añadirPersona(persona);
+                    try {
+                        proyecto.añadirPersona(persona);
+                    }catch (PersonasException e){
+                        System.err.printf(e.getMessage());
+                    }
                     break;
                 case 2:
                     introducirTarea(proyecto, teclado);
@@ -68,7 +74,6 @@ public class GestionDeProyectos {
                     String nombrePersona= teclado.nextLine();
                     System.out.println("Introduce el titulo de la tarea donde la quieras añadir o eliminar:");
                     String tituloProyecto= teclado.nextLine();
-                    System.out.println(proyecto.añadirEliminarPersona(nombrePersona,tituloProyecto));
                     break;
                 case 5:
                     for(Persona elem:proyecto.personas){

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Persona implements tieneLista<Tarea>, tieneClave<String>, Serializable{
+public class Persona implements tieneLista, tieneClave, Serializable{
     String nombre;
     String correo;
     List<Tarea> tareasResponsable;

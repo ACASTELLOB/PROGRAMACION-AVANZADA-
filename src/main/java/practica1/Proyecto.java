@@ -38,6 +38,14 @@ public class Proyecto implements Serializable {
         return tareas;
     }
 
+    public List<Persona> listarPersonasSinTarea(){
+        return UtilidadesParaListas.elementosConListaVacia(this.listarPersonas());
+    }
+
+    public List<Tarea> listarTareasSinResponsable(){
+        return UtilidadesParaListas.elementosConListaVacia(this.listarTareas());
+    }
+
     public Boolean finalizarTarea(String titulo){
         for(Tarea elem:tareas){
             if(elem.titulo.equals(titulo)){

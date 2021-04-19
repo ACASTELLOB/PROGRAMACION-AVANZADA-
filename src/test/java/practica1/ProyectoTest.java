@@ -1,6 +1,5 @@
 package practica1;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -74,10 +73,7 @@ class ProyectoTest {
         proyecto1.añadirPersona(p2);
         proyecto1.añadirTarea(t1);
         proyecto1.añadirTarea(t2);
-        assertTrue(proyecto1.añadirEliminarPersona("nombre1","tarea1"));
-        assertFalse(proyecto1.añadirEliminarPersona("nombre1","tarea1"));
-        assertFalse(proyecto1.añadirEliminarPersona("nombre4","tarea2"));
-        assertFalse(proyecto1.añadirEliminarPersona("nombre2","tarea4"));
+
     }
 
 

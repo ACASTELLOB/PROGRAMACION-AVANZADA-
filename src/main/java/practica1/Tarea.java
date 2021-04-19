@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Tarea implements tieneLista<Persona>, tieneClave<String>, Serializable {
+public class Tarea implements tieneLista, tieneClave, Serializable {
     String titulo;
     String descripcion;
     List<Persona> asignadas;
