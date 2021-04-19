@@ -27,84 +27,73 @@ public class GestionDeProyectos {
     }
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
 
-        System.out.print("Introduce el nombre del proyecto: ");
-        String titulo = teclado.nextLine();
-        Proyecto proyecto = new Proyecto(titulo);
+       Proyecto proyecto= crearProyecto(teclado);
         int opcion;
-        do {
-            opcion = menu(teclado);
-            switch (opcion) {
-                case 0:
-                    System.out.println("Cerramos el gestor");
-                    break;
-                case 1:
-                    System.out.println("Introduce el nombre de la persona");
-                    String nombre = teclado.nextLine();
-                    System.out.println("Introduce el correo de la persona: ");
-                    String correo = teclado.nextLine();
-                    Persona persona = new Persona(nombre, correo);
-                    proyecto.añadirPersona(persona);
-                    break;
-                case 2:
-                    introducirTarea(proyecto, teclado);
-                    break;
+                do {
+                    opcion = menu(teclado);
+                    switch (opcion) {
+                        case 0:
+                            System.out.println("Cerramos el gestor");
+                            break;
+                        case 1:
+                            System.out.println("Introduce el nombre de la persona");
+                            String nombre = teclado.nextLine();
+                            System.out.println("Introduce el correo de la persona: ");
+                            String correo = teclado.nextLine();
+                            Persona persona = new Persona(nombre, correo);
+                            proyecto.añadirPersona(persona);
+                            break;
+                        case 2:
+                            introducirTarea(proyecto, teclado);
+                            break;
 
-                case 3:
-                    System.out.println("Introduce el título de la tarea:");
-                    String Finalizada= teclado.nextLine();
-                    Boolean hecha = proyecto.finalizarTarea(Finalizada);
-                    if (hecha){
-                        System.out.println("Tarea Finalizada");
-                    }
-                    else{
-                        System.out.println("No se encuentra el titulo de la tarea");
-                    }
-                    break;
-                case 4:
-                    System.out.println("Introudce el nombre de la persona");
-                    String nombrePersona= teclado.nextLine();
-                    System.out.println("Introduce el titulo de la tarea donde la quieras añadir o eliminar:");
-                    String tituloProyecto= teclado.nextLine();
-                    System.out.println(proyecto.añadirEliminarPersona(nombrePersona,tituloProyecto));
-                    break;
-                case 5:
-                    for(Persona elem:proyecto.personas){
-                        System.out.println(elem.toString());
-                    }
-                case 6:
-                    for(Tarea elem:proyecto.tareas){
-                        System.out.println(elem.toString());
-                    }
-                case 7:
-                    try {
-                        FileOutputStream fos = new FileOutputStream("proyecto.bin");
-                        ObjectOutputStream oos = new ObjectOutputStream(fos);
-                        oos.writeObject(proyecto);
-                        oos.close();
-                    }catch (IOException e){
-                        System.out.println("Error al guardar el proyecto");
-                    }
-                    break;
-                case 8:
-                    try {
-                        FileInputStream fis = new FileInputStream("proyecto.bin");
-                        ObjectInputStream ois = new ObjectInputStream(fis);
-                        proyecto = (Proyecto)ois.readObject();
-                        ois.close();
-                    }catch (IOException e){
-                        System.out.println("No se ha encontrado el fichero");
-                    }catch (ClassNotFoundException ce){
-                        System.out.println("No se ha encontrado la clase necesaria para cargar el fichero");
-                    }
-                    break;
+                        case 3:
+                            System.out.println("Introduce el título de la tarea:");
+                            String Finalizada = teclado.nextLine();
+                            Boolean hecha = proyecto.finalizarTarea(Finalizada);
+                            if (hecha) {
+                                System.out.println("Tarea Finalizada");
+                            } else {
+                                System.out.println("No se encuentra el titulo de la tarea");
+                            }
+                            break;
+                        case 4:
+                            System.out.println("Introudce el nombre de la persona");
+                            String nombrePersona = teclado.nextLine();
+                            System.out.println("Introduce el titulo de la tarea donde la quieras añadir o eliminar:");
+                            String tituloProyecto = teclado.nextLine();
+                            proyecto.añadirEliminarPersona(nombrePersona, tituloProyecto);
+                            break;
+                        case 5:
+                            for (Persona elem : proyecto.personas) {
+                                System.out.println(elem.toString());
+                            }
+                        case 6:
+                            for (Tarea elem : proyecto.tareas) {
+                                System.out.println(elem.toString());
+                            }
+                        case 7:
+                            try {
+                                FileOutputStream fos = new FileOutputStream("proyecto.bin");
+                                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                                oos.writeObject(proyecto);
+                                oos.close();
+                            } catch (IOException e) {
+                                System.out.println("Error al guardar el proyecto");
+                            }
+                            break;
+                        case 8:
 
-            }
-        }while (opcion != 0);
+                            break;
 
-    }
+                    }
+                } while (opcion != 0);
+
+        }
+
 
 
 
@@ -166,6 +155,34 @@ public class GestionDeProyectos {
                 proyecto.añadirTarea(tarea);
                 break;
         }
+    }
+
+    public static Proyecto crearProyecto (Scanner teclado){
+        System.out.println("Si quieres cargar el último proyecto pulsa c o C si quieres uno nuevo pulsa n o N");
+        String cargado = teclado.nextLine().toUpperCase();
+        Proyecto proyecto;
+
+        if(cargado.equals("C")) {
+            try {
+                FileInputStream fis = new FileInputStream("proyecto.bin");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                proyecto = (Proyecto) ois.readObject();
+                ois.close();
+                return proyecto;
+            } catch (IOException e) {
+                System.out.println("No se ha encontrado el fichero");
+            } catch (ClassNotFoundException ce) {
+                System.out.println("No se ha encontrado la clase necesaria para cargar el fichero");
+            }
+        }
+        else {
+            System.out.print("Introduce el nombre del proyecto: ");
+            String titulo = teclado.nextLine();
+            proyecto = new Proyecto(titulo);
+            return proyecto;
+
+        }
+        return null;
     }
 
 }
