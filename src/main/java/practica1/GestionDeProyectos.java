@@ -1,5 +1,9 @@
 package practica1;
 
+import practica1.excepciones.FechasException;
+import practica1.excepciones.PersonasException;
+import practica1.excepciones.TareaExcepcion;
+
 import java.io.*;
 import java.util.Scanner;
 import java.util.Date;
@@ -44,7 +48,11 @@ public class GestionDeProyectos {
                             System.out.println("Introduce el correo de la persona: ");
                             String correo = teclado.nextLine();
                             Persona persona = new Persona(nombre, correo);
-                            proyecto.añadirPersona(persona);
+                            try {
+                                proyecto.añadirPersona(persona);
+                            }catch (PersonasException e){
+                                System.err.printf(e.getMessage());
+                            }
                             break;
                         case 2:
                             introducirTarea(proyecto, teclado);
@@ -53,7 +61,12 @@ public class GestionDeProyectos {
                         case 3:
                             System.out.println("Introduce el título de la tarea:");
                             String Finalizada = teclado.nextLine();
-                            Boolean hecha = proyecto.finalizarTarea(Finalizada);
+                            Boolean hecha = false;
+                            try {
+                                hecha = proyecto.finalizarTarea(Finalizada);
+                            }catch (FechasException e){
+                                System.err.printf(e.getMessage());
+                            }
                             if (hecha) {
                                 System.out.println("Tarea Finalizada");
                             } else {
@@ -65,7 +78,11 @@ public class GestionDeProyectos {
                             String nombrePersona = teclado.nextLine();
                             System.out.println("Introduce el titulo de la tarea donde la quieras añadir o eliminar:");
                             String tituloProyecto = teclado.nextLine();
-                            proyecto.añadirEliminarPersona(nombrePersona, tituloProyecto);
+                            try {
+                                proyecto.añadirEliminarPersona(nombrePersona, tituloProyecto);
+                            }catch(PersonasException e){
+                                System.err.printf(e.getMessage());
+                            }
                             break;
                         case 5:
                             for (Persona elem : proyecto.personas) {
@@ -126,7 +143,11 @@ public class GestionDeProyectos {
                 int esp = Integer.parseInt(teclado.nextLine());
                 Documentacion documento = new Documentacion(ident, horas, esInterno, format, pag, esp);
                 Tarea tarea = new Tarea(tituloTarea,descripcion, documento, prioridad);
-                proyecto.añadirTarea(tarea);
+                try {
+                    proyecto.añadirTarea(tarea);
+                }catch (TareaExcepcion e){
+                    System.err.printf(e.getMessage());
+                }
                 break;
 
             case "W":
@@ -139,7 +160,11 @@ public class GestionDeProyectos {
                 boolean esEstatica = estatica.equals("S");
                 PagWeb web = new PagWeb(ident, horas, esInterno, esEstatica, lenguaje, backend);
                 tarea = new Tarea(tituloTarea,descripcion, web, prioridad);
-                proyecto.añadirTarea(tarea);
+                try {
+                    proyecto.añadirTarea(tarea);
+                }catch (TareaExcepcion e){
+                    System.err.printf(e.getMessage());
+                }
                 break;
 
 
@@ -152,7 +177,11 @@ public class GestionDeProyectos {
                 int numModulos = Integer.parseInt(teclado.nextLine());
                 Programa prog = new Programa(ident, horas, esInterno, lenguaje, numLineasCodigo, numModulos);
                 tarea = new Tarea(tituloTarea,descripcion, prog, prioridad);
-                proyecto.añadirTarea(tarea);
+                try {
+                    proyecto.añadirTarea(tarea);
+                }catch (TareaExcepcion e){
+                    System.err.printf(e.getMessage());
+                }
                 break;
         }
     }

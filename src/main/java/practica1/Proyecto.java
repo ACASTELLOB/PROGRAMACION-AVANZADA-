@@ -44,11 +44,11 @@ public class Proyecto implements Serializable {
         return tareas;
     }
 
-    public List<Persona> listarPersonasSinTarea(){
+    public List<Persona> listarPersonasSinTareaResponsable(){
         return UtilidadesParaListas.elementosConListaVacia(this.listarPersonas());
     }
 
-    public List<Tarea> listarTareasSinResponsable(){
+    public List<Tarea> listarTareasSinPersonas(){
         return UtilidadesParaListas.elementosConListaVacia(this.listarTareas());
     }
 
