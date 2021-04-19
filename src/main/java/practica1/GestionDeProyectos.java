@@ -108,13 +108,15 @@ public class GestionDeProyectos {
 
 
 
-    public static   void introducirTarea(Proyecto proyecto, Scanner teclado){
+    public static void introducirTarea(Proyecto proyecto, Scanner teclado){
         System.out.println("Introduce el título de la tarea");
         String tituloTarea =teclado.nextLine();
         System.out.println("Introduce el tipo de resultado: d o D para documentación, w o W para web, p o P para programa: ");
         String tipoResultado= teclado.nextLine().toUpperCase();
         System.out.println("Introduce la prioridad de la tarea");
         int prioridad=Integer.parseInt(teclado.nextLine());
+        System.out.println("Introduce la descripción de la tarea");
+        String descripcion = teclado.nextLine();
         System.out.println("Introduce el identificador del documento");
         String ident=teclado.nextLine();
         System.out.println("Introduce las horas");
@@ -134,7 +136,7 @@ public class GestionDeProyectos {
                 System.out.println("Introduce el espacio en disco para tu resultado");
                 int esp = Integer.parseInt(teclado.nextLine());
                 Documentacion documento = new Documentacion(ident, horas, esInterno, format, pag, esp);
-                Tarea tarea = new Tarea(tituloTarea, documento, prioridad);
+                Tarea tarea = new Tarea(tituloTarea,descripcion, documento, prioridad);
                 proyecto.añadirTarea(tarea);
                 break;
 
@@ -147,7 +149,7 @@ public class GestionDeProyectos {
                 String estatica = teclado.nextLine();
                 boolean esEstatica = estatica.equals("S");
                 PagWeb web = new PagWeb(ident, horas, esInterno, esEstatica, lenguaje, backend);
-                tarea = new Tarea(tituloTarea, web, prioridad);
+                tarea = new Tarea(tituloTarea,descripcion, web, prioridad);
                 proyecto.añadirTarea(tarea);
                 break;
 
@@ -160,7 +162,7 @@ public class GestionDeProyectos {
                 System.out.println("Introduce el número de módulos");
                 int numModulos = Integer.parseInt(teclado.nextLine());
                 Programa prog = new Programa(ident, horas, esInterno, lenguaje, numLineasCodigo, numModulos);
-                tarea = new Tarea(tituloTarea, prog, prioridad);
+                tarea = new Tarea(tituloTarea,descripcion, prog, prioridad);
                 proyecto.añadirTarea(tarea);
                 break;
         }

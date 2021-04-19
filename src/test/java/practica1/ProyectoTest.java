@@ -28,9 +28,9 @@ class ProyectoTest {
         r2 = new Documentacion("Doc2",30,true,"java",50,17);
         r3 = new Documentacion("Doc3",34,true,"pdf",150,12);
 
-        t1 = new Tarea("tarea1",r1,1);
-        t2 = new Tarea("tarea2",r2,2);
-        t3 = new Tarea("tarea3",r3,3);
+        t1 = new Tarea("tarea1","descripción1",r1,1);
+        t2 = new Tarea("tarea2","descripción2",r2,2);
+        t3 = new Tarea("tarea3","descripción3",r3,3);
 
         proyecto1 = new Proyecto("proyecto1");
     }

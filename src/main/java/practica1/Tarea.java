@@ -19,7 +19,7 @@ public class Tarea implements tieneLista<Persona>, tieneClave<String>, Serializa
     Resultado resultadoEsperado;
     List<String> etiquetas;
 
-    public Tarea (String titulo, Resultado resultadoEsperado, int prioridad){
+    public Tarea (String titulo,String descripcion, Resultado resultadoEsperado, int prioridad){
         this.titulo = titulo;
         this.prioridad = prioridad;
         this.fechaIni = new Date();
