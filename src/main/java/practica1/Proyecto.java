@@ -19,14 +19,20 @@ public class Proyecto implements Serializable {
     }
 
     public void añadirPersona(Persona persona){
-        if(personas.contains(persona))
-            throw new PersonasException("La persona ya esta añadida al proyecto");
+        for(Persona elem:personas){
+            if(persona.nombre.equals(elem.nombre)){
+                throw new PersonasException("La persona ya esta añadida al proyecto");
+            }
+        }
         personas.add(persona);
     }
 
     public void añadirTarea(Tarea tarea) {
-        if(tareas.contains(tarea))
-            throw new TareaExcepcion();
+        for(Tarea elem:tareas){
+            if(tarea.titulo.equals(elem.titulo)){
+                throw new TareaExcepcion();
+            }
+        }
         tareas.add(tarea);
     }
 
@@ -67,7 +73,7 @@ public class Proyecto implements Serializable {
         }else{
             for(Tarea elem:tareas){
                 if(tituloTarea.equals(elem.titulo)){
-                    if(elem.asignadas.contains(persona)){
+                    if(UtilidadesParaListas.claveUnica(persona, elem)){
                         elem.eliminarPersona(persona);
                     }
                     else{
@@ -77,5 +83,4 @@ public class Proyecto implements Serializable {
             }
         }
     }
-
 }

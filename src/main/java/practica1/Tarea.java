@@ -23,12 +23,14 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
         this.titulo = titulo;
         this.prioridad = prioridad;
         this.fechaIni = new Date();
+        this.descripcion= descripcion;
         this.resultadoEsperado= resultadoEsperado;
         asignadas = new ArrayList<Persona>();
         etiquetas = new ArrayList<String>();
     }
 
     public List<Persona> getLista(){
+
         return asignadas;
     }
 
