@@ -46,24 +46,24 @@ public class Tarea implements tieneLista<Persona>, tieneClave<String>, Serializa
     }
 
     public String toString(){
-        String tarea = ("Titulo: "+titulo+"\n");
-        tarea.concat("Personas asignadas: \n");
+        StringBuilder tarea = new StringBuilder("Titulo: "+titulo+"\n");
+        tarea.append("Personas asignadas: \n");
         for (int i = 0; i < asignadas.size(); i++){
-            tarea.concat(asignadas.get(i).toString());
+            tarea.append(asignadas.get(i).toString());
             if(asignadas.get(i) == responsable){
-                tarea.concat("(RESPONSABLE)");
+                tarea.append("(RESPONSABLE)");
             }
-            tarea.concat("\n");
+            tarea.append("\n");
         }
         if (finalizada){
-            tarea.concat("Finalizada \n");
+            tarea.append("Finalizada \n");
         }else{
-            tarea.concat("Sin finalizar \n");
+            tarea.append("Sin finalizar \n");
         }
 
-        tarea.concat(resultadoEsperado.toString());
+        tarea.append(resultadoEsperado.toString());
 
-        return tarea;
+        return tarea.toString();
     }
 
     @Override
