@@ -1,6 +1,8 @@
 package practica1;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Date;
 public class GestionDeProyectos {
@@ -11,15 +13,17 @@ public class GestionDeProyectos {
         System.out.println("=====================================================");
         System.out.println("============            MENU        =================");
         System.out.println("=====================================================");
-        System.out.println("0. Salir");
+        System.out.println("0.Guardar el proyecto");
         System.out.println("1.Dar de alta a las personas que trabajan en el proyecto");
         System.out.println("2.Dar de alta las tareas con sus datos");
         System.out.println("3.Marcar una tarea como finalizada");
         System.out.println("4.Introducir o eliminar una persona de una tarea");
         System.out.println("5.Listar las personas asignadas a un proyecto");
         System.out.println("6.Listar las tareas de un proyecto.");
+        System.out.println("7.Listar tareas sin personas");
+        System.out.println("8.Listar personas no responsables de ninguna tarea");
         do {
-            System.out.print("\nElige una opcion (0..6): ");
+            System.out.print("\nElige una opcion (0..8): ");
             opcion = teclado.nextInt();
         } while ( (opcion<0) || (opcion>7) );
         teclado.nextLine(); // Elimina retorno de carro del buffer de entrada
@@ -36,7 +40,14 @@ public class GestionDeProyectos {
                     opcion = menu(teclado);
                     switch (opcion) {
                         case 0:
-                            System.out.println("Cerramos el gestor");
+                            try {
+                                FileOutputStream fos = new FileOutputStream("proyecto.bin");
+                                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                                oos.writeObject(proyecto);
+                                oos.close();
+                            } catch (IOException e) {
+                                System.out.println("Error al guardar el proyecto");
+                            }
                             break;
                         case 1:
                             System.out.println("Introduce el nombre de la persona");
@@ -71,22 +82,24 @@ public class GestionDeProyectos {
                             for (Persona elem : proyecto.personas) {
                                 System.out.println(elem.toString());
                             }
+                            break;
                         case 6:
                             for (Tarea elem : proyecto.tareas) {
                                 System.out.println(elem.toString());
                             }
+                            break;
                         case 7:
-                            try {
-                                FileOutputStream fos = new FileOutputStream("proyecto.bin");
-                                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                                oos.writeObject(proyecto);
-                                oos.close();
-                            } catch (IOException e) {
-                                System.out.println("Error al guardar el proyecto");
+                            List<Persona> listaPersonasSinTarea= proyecto.listarPersonasSinTarea();
+                            for(Persona elem:listaPersonasSinTarea){
+                                elem.toString();
                             }
                             break;
-                        case 8:
 
+                        case 8:
+                            List<Tarea> listaTareasSinREsponsable= proyecto.listarTareasSinResponsable();
+                            for(Tarea elem:listaTareasSinREsponsable){
+                                elem.toString();
+                            }
                             break;
 
                     }
