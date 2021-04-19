@@ -49,61 +49,7 @@ public class GestionDeProyectos {
                     proyecto.añadirPersona(persona);
                     break;
                 case 2:
-                    System.out.println("Introduce el título de la tarea");
-                    String tituloTarea =teclado.nextLine();
-                    System.out.println("Introduce el tipo de resultado: d o D para documentación, w o W para web, p o P para programa: ");
-                    String tipoResultado= teclado.nextLine().toUpperCase();
-                    System.out.println("Introduce la prioridad de la tarea");
-                    int prioridad=Integer.parseInt(teclado.nextLine());
-                    System.out.println("Introduce el identificador del documento");
-                    String ident=teclado.nextLine();
-                    System.out.println("Introduce las horas");
-                    int horas=Integer.parseInt(teclado.nextLine());
-                    System.out.println("Quieres que sea interno el resultado si es que sí, escribe S o s, sino escribe N o n");
-                    String interno=teclado.nextLine().toUpperCase();
-                    boolean esInterno=interno.equals("S");
-
-
-                    switch (tipoResultado) {
-
-                        case "D":
-                            System.out.println("Introduce el formato del resultado");
-                            String format = teclado.nextLine();
-                            System.out.println("Introduce el número de páginas del resultado");
-                            int pag = Integer.parseInt(teclado.nextLine());
-                            System.out.println("Introduce el espacio en disco para tu resultado");
-                            int esp = Integer.parseInt(teclado.nextLine());
-                            Documentacion documento = new Documentacion(ident, horas, esInterno, format, pag, esp);
-                            Tarea tarea = new Tarea(tituloTarea, documento, prioridad);
-                            proyecto.añadirTarea(tarea);
-                            break;
-
-                        case "W":
-                            System.out.println("Introduce el lenguaje de la web");
-                            String lenguaje = teclado.nextLine();
-                            System.out.println("Introduce el backend de la web");
-                            String backend = teclado.nextLine();
-                            System.out.println("Quieres que sea estática la web si es que sí, escribe S, sino escribe N");
-                            String estatica = teclado.nextLine();
-                            boolean esEstatica = estatica.equals("S");
-                            PagWeb web = new PagWeb(ident, horas, esInterno, esEstatica, lenguaje, backend);
-                            tarea = new Tarea(tituloTarea, web, prioridad);
-                            proyecto.añadirTarea(tarea);
-                            break;
-
-
-                        case "P":
-                            System.out.println("Introduce el lenguaje del programa");
-                            lenguaje = teclado.nextLine();
-                            System.out.println("Introduce el número el lineas de código");
-                            int numLineasCodigo = Integer.parseInt(teclado.nextLine());
-                            System.out.println("Introduce el número de módulos");
-                            int numModulos = Integer.parseInt(teclado.nextLine());
-                            Programa prog = new Programa(ident, horas, esInterno, lenguaje, numLineasCodigo, numModulos);
-                            tarea = new Tarea(tituloTarea, prog, prioridad);
-                            proyecto.añadirTarea(tarea);
-                            break;
-                    }
+                    introducirTarea(proyecto, teclado);
                     break;
 
                 case 3:
@@ -158,6 +104,66 @@ public class GestionDeProyectos {
             }
         }while (opcion != 0);
 
+    }
+
+
+
+    public static   void introducirTarea(Proyecto proyecto, Scanner teclado){
+        System.out.println("Introduce el título de la tarea");
+        String tituloTarea =teclado.nextLine();
+        System.out.println("Introduce el tipo de resultado: d o D para documentación, w o W para web, p o P para programa: ");
+        String tipoResultado= teclado.nextLine().toUpperCase();
+        System.out.println("Introduce la prioridad de la tarea");
+        int prioridad=Integer.parseInt(teclado.nextLine());
+        System.out.println("Introduce el identificador del documento");
+        String ident=teclado.nextLine();
+        System.out.println("Introduce las horas");
+        int horas=Integer.parseInt(teclado.nextLine());
+        System.out.println("Quieres que sea interno el resultado si es que sí, escribe S o s, sino escribe N o n");
+        String interno=teclado.nextLine().toUpperCase();
+        boolean esInterno=interno.equals("S");
+
+
+        switch (tipoResultado) {
+
+            case "D":
+                System.out.println("Introduce el formato del resultado");
+                String format = teclado.nextLine();
+                System.out.println("Introduce el número de páginas del resultado");
+                int pag = Integer.parseInt(teclado.nextLine());
+                System.out.println("Introduce el espacio en disco para tu resultado");
+                int esp = Integer.parseInt(teclado.nextLine());
+                Documentacion documento = new Documentacion(ident, horas, esInterno, format, pag, esp);
+                Tarea tarea = new Tarea(tituloTarea, documento, prioridad);
+                proyecto.añadirTarea(tarea);
+                break;
+
+            case "W":
+                System.out.println("Introduce el lenguaje de la web");
+                String lenguaje = teclado.nextLine();
+                System.out.println("Introduce el backend de la web");
+                String backend = teclado.nextLine();
+                System.out.println("Quieres que sea estática la web si es que sí, escribe S, sino escribe N");
+                String estatica = teclado.nextLine();
+                boolean esEstatica = estatica.equals("S");
+                PagWeb web = new PagWeb(ident, horas, esInterno, esEstatica, lenguaje, backend);
+                tarea = new Tarea(tituloTarea, web, prioridad);
+                proyecto.añadirTarea(tarea);
+                break;
+
+
+            case "P":
+                System.out.println("Introduce el lenguaje del programa");
+                lenguaje = teclado.nextLine();
+                System.out.println("Introduce el número el lineas de código");
+                int numLineasCodigo = Integer.parseInt(teclado.nextLine());
+                System.out.println("Introduce el número de módulos");
+                int numModulos = Integer.parseInt(teclado.nextLine());
+                Programa prog = new Programa(ident, horas, esInterno, lenguaje, numLineasCodigo, numModulos);
+                tarea = new Tarea(tituloTarea, prog, prioridad);
+                proyecto.añadirTarea(tarea);
+                break;
+        }
     }
 
 }
