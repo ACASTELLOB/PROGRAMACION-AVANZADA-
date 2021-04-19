@@ -1,5 +1,8 @@
 package practica1;
 
+import practica1.excepciones.PersonasException;
+import practica1.excepciones.TareaExcepcion;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +19,16 @@ public class Proyecto implements Serializable {
     }
 
     public void añadirPersona(Persona persona){
+        if(personas.contains(persona))
+            throw new PersonasException("La persona ya esta añadida al proyecto");
         personas.add(persona);
     }
 
-    public void añadirTarea(Tarea tarea) { tareas.add(tarea);}
+    public void añadirTarea(Tarea tarea) {
+        if(tareas.contains(tarea))
+            throw new TareaExcepcion();
+        tareas.add(tarea);
+    }
 
     public List<Persona> listarPersonas(){
         return personas;
@@ -39,29 +48,26 @@ public class Proyecto implements Serializable {
         return false;
     }
 
-    public Boolean añadirEliminarPersona(String nombrePersona, String tituloTarea){
+    public void añadirEliminarPersona(String nombrePersona, String tituloTarea){
         Persona persona= null;
         for(Persona elem:personas) {
             if (elem.nombre.equals(nombrePersona))
                 persona = elem;
         }
         if(persona==null){
-            return false;
+            throw new PersonasException("La persona no esta dada de alta en el proyecto");
         }else{
             for(Tarea elem:tareas){
                 if(tituloTarea.equals(elem.titulo)){
                     if(elem.asignadas.contains(persona)){
-                        elem.asignadas.remove(persona);
-                        return false;
+                        elem.eliminarPersona(persona);
                     }
                     else{
-                        elem.asignadas.add(persona);
-                        return true;
+                        elem.introducirPersona(persona);
                     }
                 }
             }
         }
-        return false;
     }
 
 }

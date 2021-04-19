@@ -1,4 +1,4 @@
-package practica1;
+package practica1.excepciones;
 
 public class FechasException extends RuntimeException{
     public FechasException(){

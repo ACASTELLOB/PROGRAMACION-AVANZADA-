@@ -1,5 +1,7 @@
 package practica1;
 
+import practica1.excepciones.FechasException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,11 +29,12 @@ public class Tarea implements tieneLista<Persona>, tieneClave<String>, Serializa
     }
 
     public List<Persona> getLista(){
-
         return asignadas;
     }
 
     public Boolean finalizar(){
+        if(fechaIni.after(fechaFin))
+            throw new FechasException();
         finalizada = true;
         this.fechaFin = new Date();
         return finalizada;
