@@ -1,7 +1,6 @@
-package practica1;
+package practica1.facturación;
 
-public class ConsumoInterno implements Facturacion {
-
+public class Urgente implements Facturacion {
     @Override
     public int calculoFacturación() {
         return 0;
