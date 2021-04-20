@@ -1,5 +1,8 @@
 package practica1;
 
+import practica1.listas.tieneClave;
+import practica1.listas.tieneLista;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

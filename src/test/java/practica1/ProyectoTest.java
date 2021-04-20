@@ -1,8 +1,10 @@
 package practica1;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import practica1.Resultados.Documentacion;
+import practica1.Resultados.Resultado;
+
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 

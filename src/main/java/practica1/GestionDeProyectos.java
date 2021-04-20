@@ -1,14 +1,16 @@
 package practica1;
 
+import practica1.Resultados.Documentacion;
+import practica1.Resultados.PagWeb;
+import practica1.Resultados.Programa;
 import practica1.excepciones.FechasException;
 import practica1.excepciones.PersonasException;
 import practica1.excepciones.TareaExcepcion;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Date;
+
 public class GestionDeProyectos {
 
     public static int menu(Scanner teclado) {

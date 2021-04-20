@@ -2,6 +2,8 @@ package practica1;
 
 import practica1.excepciones.PersonasException;
 import practica1.excepciones.TareaExcepcion;
+import practica1.listas.UtilidadesParaListas;
+import practica1.listas.tieneLista;
 
 import java.io.Serializable;
 import java.util.ArrayList;
