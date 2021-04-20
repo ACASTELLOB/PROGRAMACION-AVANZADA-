@@ -1,4 +1,4 @@
-package practica1;
+package practica1.Resultados;
 
 public class Programa extends Resultado{
     String lenguaje;
