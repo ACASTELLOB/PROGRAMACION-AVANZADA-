@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Proyecto implements Serializable {
+public class Proyecto implements tieneLista<Persona>, Serializable {
     String nombre;
     List<Tarea> tareas;
     List<Persona> personas;
@@ -19,11 +19,10 @@ public class Proyecto implements Serializable {
     }
 
     public void añadirPersona(Persona persona){
-        for(Persona elem:personas){
-            if(persona.nombre.equals(elem.nombre)){
-                throw new PersonasException("La persona ya esta añadida al proyecto");
-            }
+        if(UtilidadesParaListas.claveUnica(persona, this)){
+            throw new PersonasException("La persona ya esta añadida al proyecto");
         }
+
         personas.add(persona);
     }
 
@@ -82,5 +81,10 @@ public class Proyecto implements Serializable {
                 }
             }
         }
+    }
+
+    @Override
+    public List<Persona> getLista() {
+        return this.personas;
     }
 }
