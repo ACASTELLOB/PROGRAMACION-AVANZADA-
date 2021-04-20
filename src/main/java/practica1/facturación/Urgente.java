@@ -1,8 +1,9 @@
 package practica1.facturación;
 
 public class Urgente implements Facturacion {
+
     @Override
-    public int calculoFacturación() {
-        return 0;
+    public double calculoFacturación(double coste) {
+        return coste * 1.25;
     }
 }

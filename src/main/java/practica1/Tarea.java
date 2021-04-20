@@ -22,10 +22,11 @@ public class Tarea implements tieneLista<Persona>, tieneClave<String>, Serializa
     Boolean finalizada=false;
     Resultado resultadoEsperado;
     List<String> etiquetas;
-    int coste;
+    double coste;
     Facturacion facturacion;
+    double factura;
 
-    public Tarea (String titulo,String descripcion, Resultado resultadoEsperado, int prioridad){
+    public Tarea (String titulo,String descripcion, Resultado resultadoEsperado, int prioridad, int coste, Facturacion facturacion){
         this.titulo = titulo;
         this.prioridad = prioridad;
         this.fechaIni = new Date();
@@ -33,11 +34,9 @@ public class Tarea implements tieneLista<Persona>, tieneClave<String>, Serializa
         this.resultadoEsperado= resultadoEsperado;
         asignadas = new ArrayList<Persona>();
         etiquetas = new ArrayList<String>();
-    }
-
-    public List<Persona> getLista(){
-
-        return asignadas;
+        this.coste = coste;
+        this.facturacion = facturacion;
+        this.factura = facturacion.calculoFacturación(coste);
     }
 
     public Boolean finalizar(){
@@ -54,6 +53,10 @@ public class Tarea implements tieneLista<Persona>, tieneClave<String>, Serializa
 
     public void eliminarPersona(Persona persona){
         asignadas.remove(persona);
+    }
+
+    public void cambiarCoste(double coste){
+        factura = facturacion.calculoFacturación(coste);
     }
 
     public String toString(){
@@ -75,6 +78,11 @@ public class Tarea implements tieneLista<Persona>, tieneClave<String>, Serializa
         tarea.append(resultadoEsperado.toString());
 
         return tarea.toString();
+    }
+
+    @Override
+    public List<Persona> getLista(){
+        return asignadas;
     }
 
     @Override

@@ -1,8 +1,9 @@
 package practica1.facturación;
 
 public class Descuento implements Facturacion {
+
     @Override
-    public int calculoFacturación() {
-        return 0;
+    public double calculoFacturación(double coste) {
+        return coste * 0.75;
     }
 }
