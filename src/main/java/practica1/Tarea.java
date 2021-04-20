@@ -18,6 +18,8 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
     Boolean finalizada=false;
     Resultado resultadoEsperado;
     List<String> etiquetas;
+    int coste;
+    Facturacion facturacion;
 
     public Tarea (String titulo,String descripcion, Resultado resultadoEsperado, int prioridad){
         this.titulo = titulo;
