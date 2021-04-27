@@ -283,7 +283,12 @@ public class GestionDeProyectos {
                 ois.close();
                 return proyecto;
             } catch (IOException e) {
-                System.out.println("No se ha encontrado el fichero");
+                System.out.println("No se ha encontrado el fichero, debes crear uno:");
+                System.out.print("Introduce el nombre del proyecto: ");
+                String titulo = teclado.nextLine();
+                proyecto = new Proyecto(titulo);
+                return proyecto;
+
             } catch (ClassNotFoundException ce) {
                 System.out.println("No se ha encontrado la clase necesaria para cargar el fichero");
             }
