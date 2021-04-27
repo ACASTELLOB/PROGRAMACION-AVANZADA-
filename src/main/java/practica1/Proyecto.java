@@ -53,6 +53,16 @@ public class Proyecto implements tieneLista<Persona>, Serializable {
         return UtilidadesParaListas.elementosConListaVacia(this.listarTareas());
     }
 
+    public Boolean cambiarCosteTarea(String titulo, double coste){
+        for(Tarea elem:tareas){
+            if(elem.titulo.equals(titulo)){
+                elem.cambiarCoste(coste);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Boolean finalizarTarea(String titulo){
         for(Tarea elem:tareas){
             if(elem.titulo.equals(titulo)){

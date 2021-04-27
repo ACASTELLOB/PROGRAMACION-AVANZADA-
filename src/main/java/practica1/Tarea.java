@@ -56,6 +56,7 @@ public class Tarea implements tieneLista<Persona>, tieneClave<String>, Serializa
     }
 
     public void cambiarCoste(double coste){
+        this.coste = coste;
         factura = facturacion.calculoFacturación(coste);
     }
 

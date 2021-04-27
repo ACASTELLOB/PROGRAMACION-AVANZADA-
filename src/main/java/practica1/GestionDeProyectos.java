@@ -33,6 +33,7 @@ public class GestionDeProyectos {
         System.out.println("6.Listar las tareas de un proyecto.");
         System.out.println("7.Listar tareas sin personas");
         System.out.println("8.Listar personas no responsables de ninguna tarea");
+        System.out.println("9.Cambiar coste de una tarea");
         do {
             System.out.print("\nElige una opcion (0..8): ");
             opcion = teclado.nextInt();
@@ -131,6 +132,25 @@ public class GestionDeProyectos {
                             }
                             break;
 
+                        case 9:
+                            System.out.println("Introduce el titulo de la tarea");
+                            String titulo = teclado.nextLine();
+                            System.out.println("Introduce el nuevo coste de la tarea");
+                            double coste = teclado.nextDouble();
+
+                            Boolean costeCambiado = false;
+
+                            try {
+                                costeCambiado = proyecto.cambiarCosteTarea(titulo,coste);
+                            }catch (TareaExcepcion e){
+                                System.err.printf("No se ha podido cambiar el coste de la tarea " + e.getMessage());
+                            }
+                            if (costeCambiado) {
+                                System.out.println("Coste de la tarea cambiado con exito");
+                            } else {
+                                System.out.println("No se ha podido cambiar el coste de la tarea");
+                            }
+                            break;
                     }
                 } while (opcion != 0);
 
