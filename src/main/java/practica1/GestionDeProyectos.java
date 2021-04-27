@@ -34,7 +34,7 @@ public class GestionDeProyectos {
         System.out.println("8.Listar personas no responsables de ninguna tarea");
         System.out.println("9.Cambiar coste de una tarea");
         do {
-            System.out.print("\nElige una opcion (0..8): ");
+            System.out.print("\nElige una opcion (0..9): ");
             opcion = teclado.nextInt();
         } while ( (opcion<0) || (opcion>7) );
         teclado.nextLine(); // Elimina retorno de carro del buffer de entrada
