@@ -26,7 +26,7 @@ public class Tarea implements tieneLista<Persona>, tieneClave<String>, Serializa
     Facturacion facturacion;
     double factura;
 
-    public Tarea (String titulo,String descripcion, Resultado resultadoEsperado, int prioridad, int coste, Facturacion facturacion){
+    public Tarea (String titulo,String descripcion, Resultado resultadoEsperado, int prioridad, double coste, Facturacion facturacion){
         this.titulo = titulo;
         this.prioridad = prioridad;
         this.fechaIni = new Date();

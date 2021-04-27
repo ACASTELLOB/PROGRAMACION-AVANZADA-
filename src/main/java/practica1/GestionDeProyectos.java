@@ -6,8 +6,13 @@ import practica1.Resultados.Programa;
 import practica1.excepciones.FechasException;
 import practica1.excepciones.PersonasException;
 import practica1.excepciones.TareaExcepcion;
+import practica1.facturación.ConsumoInterno;
+import practica1.facturación.Descuento;
+import practica1.facturación.Facturacion;
+import practica1.facturación.Urgente;
 
 import java.io.*;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
 
@@ -64,14 +69,14 @@ public class GestionDeProyectos {
                             try {
                                 proyecto.añadirPersona(persona);
                             }catch (PersonasException e){
-                                System.err.printf(e.getMessage());
+                                System.err.println(e.getMessage());
                             }
                             break;
                         case 2:
                             try{
                                 introducirTarea(proyecto, teclado);
                             }catch (TareaExcepcion e){
-                                System.err.printf(e.getMessage());
+                                System.err.println(e.getMessage());
                             }
 
                             break;
@@ -83,7 +88,7 @@ public class GestionDeProyectos {
                             try {
                                 hecha = proyecto.finalizarTarea(Finalizada);
                             }catch (FechasException e){
-                                System.err.printf(e.getMessage());
+                                System.err.println(e.getMessage());
                             }
                             if (hecha) {
                                 System.out.println("Tarea Finalizada");
@@ -99,7 +104,7 @@ public class GestionDeProyectos {
                             try {
                                 proyecto.añadirEliminarPersona(nombrePersona, tituloProyecto);
                             }catch(PersonasException e){
-                                System.err.printf(e.getMessage());
+                                System.err.println(e.getMessage());
                             }
                             break;
                         case 5:
@@ -150,61 +155,101 @@ public class GestionDeProyectos {
         System.out.println("Quieres que sea interno el resultado si es que sí, escribe S o s, sino escribe N o n");
         String interno=teclado.nextLine().toUpperCase();
         boolean esInterno=interno.equals("S");
-
-
         switch (tipoResultado) {
 
             case "D":
-                System.out.println("Introduce el formato del resultado");
-                String format = teclado.nextLine();
-                System.out.println("Introduce el número de páginas del resultado");
-                int pag = Integer.parseInt(teclado.nextLine());
-                System.out.println("Introduce el espacio en disco para tu resultado");
-                int esp = Integer.parseInt(teclado.nextLine());
-                Documentacion documento = new Documentacion(ident, horas, esInterno, format, pag, esp);
-                Tarea tarea = new Tarea(tituloTarea,descripcion, documento, prioridad);
+                Tarea tarea = crearDocumentación(teclado,ident, horas, esInterno, tituloTarea, descripcion, prioridad);
                 try {
                     proyecto.añadirTarea(tarea);
                 }catch (TareaExcepcion e){
-                    System.err.printf(e.getMessage());
+                    System.err.println(e.getMessage());
                 }
                 break;
-
             case "W":
-                System.out.println("Introduce el lenguaje de la web");
-                String lenguaje = teclado.nextLine();
-                System.out.println("Introduce el backend de la web");
-                String backend = teclado.nextLine();
-                System.out.println("Quieres que sea estática la web si es que sí, escribe S, sino escribe N");
-                String estatica = teclado.nextLine();
-                boolean esEstatica = estatica.equals("S");
-                PagWeb web = new PagWeb(ident, horas, esInterno, esEstatica, lenguaje, backend);
-                tarea = new Tarea(tituloTarea,descripcion, web, prioridad);
+                tarea = crearWeb(teclado,ident, horas, esInterno, tituloTarea, descripcion, prioridad);
                 try {
                     proyecto.añadirTarea(tarea);
                 }catch (TareaExcepcion e){
-                    System.err.printf(e.getMessage());
+                    System.err.println (e.getMessage());
                 }
                 break;
-
-
             case "P":
-                System.out.println("Introduce el lenguaje del programa");
-                lenguaje = teclado.nextLine();
-                System.out.println("Introduce el número el lineas de código");
-                int numLineasCodigo = Integer.parseInt(teclado.nextLine());
-                System.out.println("Introduce el número de módulos");
-                int numModulos = Integer.parseInt(teclado.nextLine());
-                Programa prog = new Programa(ident, horas, esInterno, lenguaje, numLineasCodigo, numModulos);
-                tarea = new Tarea(tituloTarea,descripcion, prog, prioridad);
+                 tarea = crearPrograma(teclado,ident, horas, esInterno, tituloTarea, descripcion, prioridad);
                 try {
                     proyecto.añadirTarea(tarea);
                 }catch (TareaExcepcion e){
-                    System.err.printf(e.getMessage());
+                    System.err.println(e.getMessage());
                 }
                 break;
         }
     }
+
+
+    public static Tarea crearDocumentación(Scanner teclado, String ident, int horas, boolean esInterno, String tituloTarea, String descripcion, int prioridad){
+        System.out.println("Introduce el formato del resultado");
+        String format = teclado.nextLine();
+        System.out.println("Introduce el número de páginas del resultado");
+        int pag = Integer.parseInt(teclado.nextLine());
+        System.out.println("Introduce el espacio en disco para tu resultado");
+        int esp = Integer.parseInt(teclado.nextLine());
+        Documentacion documento = new Documentacion(ident, horas,  esInterno, format, pag, esp);
+        System.out.println("Introduce el coste del proyecto");
+        double coste= teclado.nextDouble();
+        Facturacion facturacion = crearFacturacion(teclado);
+        Tarea tarea = new Tarea(tituloTarea,descripcion, documento, prioridad, coste, facturacion);
+        return tarea;
+
+    }
+
+    public static Tarea crearWeb(Scanner teclado, String ident, int horas, boolean esInterno, String tituloTarea, String descripcion, int prioridad){
+        System.out.println("Introduce el lenguaje de la web");
+        String lenguaje = teclado.nextLine();
+        System.out.println("Introduce el backend de la web");
+        String backend = teclado.nextLine();
+        System.out.println("Quieres que sea estática la web si es que sí, escribe S, sino escribe N");
+        String estatica = teclado.nextLine();
+        boolean esEstatica = estatica.equals("S");
+        PagWeb web = new PagWeb(ident, horas, esInterno, esEstatica, lenguaje, backend);
+        System.out.println("Introduce el coste del proyecto");
+        double coste= teclado.nextDouble();
+        Facturacion facturacion = crearFacturacion(teclado);
+        Tarea tarea = new Tarea(tituloTarea,descripcion, web, prioridad,coste, facturacion);
+        return tarea;
+    }
+
+    public static Tarea crearPrograma(Scanner teclado, String ident, int horas, boolean esInterno, String tituloTarea, String descripcion, int prioridad){
+        System.out.println("Introduce el lenguaje del programa");
+        String lenguaje = teclado.nextLine();
+        System.out.println("Introduce el número el lineas de código");
+        int numLineasCodigo = Integer.parseInt(teclado.nextLine());
+        System.out.println("Introduce el número de módulos");
+        int numModulos = Integer.parseInt(teclado.nextLine());
+        Programa prog = new Programa(ident, horas, esInterno, lenguaje, numLineasCodigo, numModulos);
+        System.out.println("Introduce el coste del proyecto");
+        double coste= teclado.nextDouble();
+        Facturacion facturacion = crearFacturacion(teclado);
+        Tarea tarea = new Tarea(tituloTarea,descripcion, prog, prioridad,coste, facturacion);
+        return tarea;
+    }
+
+    public static Facturacion crearFacturacion(Scanner teclado){
+        System.out.println("Que tipo de facturación desea: Escribe c o C para consumo interno,  d o D para descuentos y u o U para urgentes");
+        String tipoFacturación = teclado.nextLine().toUpperCase();
+        switch( tipoFacturación){
+            case "C":
+                Facturacion facturacion = new ConsumoInterno();
+                return facturacion;
+            case "D":
+                 facturacion = new Descuento();
+                 return facturacion;
+            case "U":
+                 facturacion =new Urgente();
+                 return facturacion;
+        }
+        return null;
+    }
+
+
 
     public static Proyecto crearProyecto (Scanner teclado){
         System.out.println("Si quieres cargar el último proyecto pulsa c o C si quieres uno nuevo pulsa n o N");
