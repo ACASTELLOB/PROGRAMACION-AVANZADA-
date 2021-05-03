@@ -7,7 +7,7 @@ public class UtilidadesParaListas{
     public static < E extends tieneLista<?>> List<E> elementosConListaVacia(List<E> lista){
         List<E> res= new ArrayList<>();
         for(E elem:lista) {
-            if (elem.getLista().size() == 0) {
+            if (elem.getLista().isEmpty()) {
                 res.add(elem);
             }
         }

@@ -30,8 +30,8 @@ public class GestionDeProyectos {
         System.out.println("4.Introducir o eliminar una persona de una tarea");
         System.out.println("5.Listar las personas asignadas a un proyecto");
         System.out.println("6.Listar las tareas de un proyecto.");
-        System.out.println("7.Listar tareas sin personas");
-        System.out.println("8.Listar personas no responsables de ninguna tarea");
+        System.out.println("7.Listar personas no responsables de ninguna tarea");
+        System.out.println("8.Listar tareas sin personas");
         System.out.println("9.Cambiar coste de una tarea");
         do {
             System.out.print("\nElige una opcion (0..9): ");
@@ -120,14 +120,14 @@ public class GestionDeProyectos {
                         case 7:
                             List<Persona> listaPersonasSinTarea= proyecto.listarPersonasSinTarea();
                             for(Persona elem:listaPersonasSinTarea){
-                                elem.toString();
+                                System.out.print(elem);
                             }
                             break;
 
                         case 8:
                             List<Tarea> listaTareasSinREsponsable= proyecto.listarTareasSinResponsable();
                             for(Tarea elem:listaTareasSinREsponsable){
-                                elem.toString();
+                                System.out.print(elem);
                             }
                             break;
 
