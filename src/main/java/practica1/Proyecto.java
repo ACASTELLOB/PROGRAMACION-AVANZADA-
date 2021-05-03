@@ -63,6 +63,8 @@ public class Proyecto implements tieneLista<Persona>, Serializable {
         return false;
     }
 
+
+
     public Boolean finalizarTarea(String titulo){
         for(Tarea elem:tareas){
             if(elem.titulo.equals(titulo)){
@@ -71,6 +73,26 @@ public class Proyecto implements tieneLista<Persona>, Serializable {
             }
         }
         return false;
+    }
+
+
+    public void responsable(String nombrePersona, String tituloTarea){
+        Persona persona =null;
+        for(Persona elem:personas) {
+            if (elem.nombre.equals(nombrePersona))
+                persona = elem;
+        }
+        if(persona==null){
+            throw new PersonasException("La persona no esta dada de alta en el proyecto");
+        }else{
+            for(Tarea elem:tareas){
+                if(tituloTarea.equals(elem.titulo)){
+                    elem.responsable=persona;
+                }
+            }
+        }
+
+
     }
 
     public void añadirEliminarPersona(String nombrePersona, String tituloTarea){

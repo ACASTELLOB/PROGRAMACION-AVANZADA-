@@ -40,10 +40,10 @@ public class Tarea implements tieneLista<Persona>, tieneClave<String>, Serializa
     }
 
     public Boolean finalizar(){
+        this.fechaFin=new Date();
         if(fechaIni.after(fechaFin))
             throw new FechasException();
-        finalizada = true;
-        this.fechaFin = new Date();
+        this.finalizada = true;
         return finalizada;
     }
 
@@ -76,7 +76,8 @@ public class Tarea implements tieneLista<Persona>, tieneClave<String>, Serializa
             tarea.append("Sin finalizar \n");
         }
         tarea.append("Descripción:" +descripcion + "\n");
-        tarea.append(resultadoEsperado.toString());
+        tarea.append(resultadoEsperado.toString()+"\n");
+        tarea.append("Facturación:"+ factura);
 
         return tarea.toString();
     }

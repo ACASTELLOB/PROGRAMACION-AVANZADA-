@@ -28,15 +28,16 @@ public class GestionDeProyectos {
         System.out.println("2.Dar de alta las tareas con sus datos");
         System.out.println("3.Marcar una tarea como finalizada");
         System.out.println("4.Introducir o eliminar una persona de una tarea");
-        System.out.println("5.Listar las personas asignadas a un proyecto");
-        System.out.println("6.Listar las tareas de un proyecto.");
-        System.out.println("7.Listar personas no responsables de ninguna tarea");
-        System.out.println("8.Listar tareas sin personas");
-        System.out.println("9.Cambiar coste de una tarea");
+        System.out.println("5.Añadir responsable");
+        System.out.println("6.Listar las personas asignadas a un proyecto");
+        System.out.println("7.Listar las tareas de un proyecto.");
+        System.out.println("8.Listar personas no responsables de ninguna tarea");
+        System.out.println("9.Listar tareas sin personas");
+        System.out.println("10.Cambiar coste de una tarea");
         do {
-            System.out.print("\nElige una opcion (0..9): ");
+            System.out.print("\nElige una opcion (0..10): ");
             opcion = teclado.nextInt();
-        } while ( (opcion<0) || (opcion>9) );
+        } while ( (opcion<0) || (opcion>10) );
         teclado.nextLine(); // Elimina retorno de carro del buffer de entrada
         return opcion;
     }
@@ -103,35 +104,50 @@ public class GestionDeProyectos {
                             String tituloProyecto = teclado.nextLine();
                             try {
                                 proyecto.añadirEliminarPersona(nombrePersona, tituloProyecto);
+                                System.out.println("Persona añadida o eliminada");
                             }catch(PersonasException e){
                                 System.err.println(e.getMessage());
                             }
                             break;
                         case 5:
+                            System.out.println("Introduce el título de la tarea");
+                            String tituloResponsable=teclado.nextLine();
+                            System.out.println("Introduce el nombre de la persona responsabale:");
+                            String responsable= teclado.nextLine();
+                            try{
+                                proyecto.responsable(responsable,tituloResponsable);
+                                System.out.println("Responsable añadido");
+                            }catch(PersonasException e){
+                                System.err.println(e.getMessage());
+                            }
+                            break;
+
+
+                        case 6:
                             for (Persona elem : proyecto.personas) {
                                 System.out.println(elem.toString());
                             }
                             break;
-                        case 6:
+                        case 7:
                             for (Tarea elem : proyecto.tareas) {
                                 System.out.println(elem.toString());
                             }
                             break;
-                        case 7:
+                        case 8:
                             List<Persona> listaPersonasSinTarea= proyecto.listarPersonasSinTarea();
                             for(Persona elem:listaPersonasSinTarea){
                                 System.out.print(elem);
                             }
                             break;
 
-                        case 8:
+                        case 9:
                             List<Tarea> listaTareasSinREsponsable= proyecto.listarTareasSinResponsable();
                             for(Tarea elem:listaTareasSinREsponsable){
                                 System.out.print(elem);
                             }
                             break;
 
-                        case 9:
+                        case 10:
                             System.out.println("Introduce el titulo de la tarea");
                             String titulo = teclado.nextLine();
                             System.out.println("Introduce el nuevo coste de la tarea");
