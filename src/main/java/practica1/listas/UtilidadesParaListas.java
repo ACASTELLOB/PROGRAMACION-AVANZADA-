@@ -17,9 +17,9 @@ public class UtilidadesParaListas{
     public static <T,E extends tieneClave<T>> Boolean claveUnica(E elem, tieneLista<E> objetoConLista) {
         for (E aux : objetoConLista.getLista()) {
             if (aux.getClave().equals(elem.getClave())) {
-                return false;
+                return true;
             }
         }
-        return  true;
+        return  false;
     }
 }

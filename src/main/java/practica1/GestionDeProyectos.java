@@ -213,7 +213,7 @@ public class GestionDeProyectos {
         int esp = Integer.parseInt(teclado.nextLine());
         Documentacion documento = new Documentacion(ident, horas,  esInterno, format, pag, esp);
         System.out.println("Introduce el coste del proyecto");
-        double coste= teclado.nextDouble();
+        double coste= Double.parseDouble(teclado.nextLine());
         Facturacion facturacion = crearFacturacion(teclado);
         Tarea tarea = new Tarea(tituloTarea,descripcion, documento, prioridad, coste, facturacion);
         return tarea;
@@ -230,7 +230,7 @@ public class GestionDeProyectos {
         boolean esEstatica = estatica.equals("S");
         PagWeb web = new PagWeb(ident, horas, esInterno, esEstatica, lenguaje, backend);
         System.out.println("Introduce el coste del proyecto");
-        double coste= teclado.nextDouble();
+        double coste= Double.parseDouble(teclado.nextLine());
         Facturacion facturacion = crearFacturacion(teclado);
         Tarea tarea = new Tarea(tituloTarea,descripcion, web, prioridad,coste, facturacion);
         return tarea;
@@ -245,7 +245,7 @@ public class GestionDeProyectos {
         int numModulos = Integer.parseInt(teclado.nextLine());
         Programa prog = new Programa(ident, horas, esInterno, lenguaje, numLineasCodigo, numModulos);
         System.out.println("Introduce el coste del proyecto");
-        double coste= teclado.nextDouble();
+        double coste= Double.parseDouble(teclado.nextLine());
         Facturacion facturacion = crearFacturacion(teclado);
         Tarea tarea = new Tarea(tituloTarea,descripcion, prog, prioridad,coste, facturacion);
         return tarea;
