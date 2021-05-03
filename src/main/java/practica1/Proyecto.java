@@ -88,6 +88,7 @@ public class Proyecto implements tieneLista<Persona>, Serializable {
             for(Tarea elem:tareas){
                 if(tituloTarea.equals(elem.titulo)){
                     elem.responsable=persona;
+                    persona.tareasResponsable.add(elem);
                 }
             }
         }
