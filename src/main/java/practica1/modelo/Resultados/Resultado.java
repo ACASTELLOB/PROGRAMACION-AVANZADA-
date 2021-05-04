@@ -1,4 +1,4 @@
-package practica1.Resultados;
+package practica1.modelo.Resultados;
 
 import java.io.Serializable;
 

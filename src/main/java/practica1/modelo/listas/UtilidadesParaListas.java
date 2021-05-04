@@ -1,4 +1,4 @@
-package practica1.listas;
+package practica1.modelo.listas;
 
 import java.util.ArrayList;
 import java.util.List;

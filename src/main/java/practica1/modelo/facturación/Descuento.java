@@ -1,4 +1,4 @@
-package practica1.facturación;
+package practica1.modelo.facturación;
 
 public class Descuento implements Facturacion {
 

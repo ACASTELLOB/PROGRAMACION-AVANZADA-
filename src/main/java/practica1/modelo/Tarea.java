@@ -1,10 +1,10 @@
-package practica1;
+package practica1.modelo;
 
-import practica1.Resultados.Resultado;
-import practica1.excepciones.FechasException;
-import practica1.facturación.Facturacion;
-import practica1.listas.tieneClave;
-import practica1.listas.tieneLista;
+import practica1.modelo.Resultados.Resultado;
+import practica1.modelo.excepciones.FechasException;
+import practica1.modelo.facturación.Facturacion;
+import practica1.modelo.listas.tieneClave;
+import practica1.modelo.listas.tieneLista;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,19 +12,19 @@ import java.util.Date;
 import java.util.List;
 
 public class Tarea implements tieneLista<Persona>, tieneClave<String>, Serializable {
-    String titulo;
+    public String titulo;
     String descripcion;
     List<Persona> asignadas;
     Persona responsable;
     int prioridad;
     Date fechaIni;
     Date fechaFin;
-    Boolean finalizada=false;
+    public Boolean finalizada=false;
     Resultado resultadoEsperado;
     List<String> etiquetas;
-    double coste;
+    public double coste;
     Facturacion facturacion;
-    double factura;
+    public double factura;
 
     public Tarea (String titulo,String descripcion, Resultado resultadoEsperado, int prioridad, double coste, Facturacion facturacion){
         this.titulo = titulo;

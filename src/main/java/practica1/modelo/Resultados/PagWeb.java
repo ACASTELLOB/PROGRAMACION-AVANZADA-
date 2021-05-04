@@ -1,4 +1,4 @@
-package practica1.Resultados;
+package practica1.modelo.Resultados;
 
 public class PagWeb extends Resultado{
     Boolean estatica;
