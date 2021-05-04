@@ -2,13 +2,16 @@ package practica1;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import practica1.Resultados.Documentacion;
-import practica1.Resultados.Resultado;
-import practica1.facturación.ConsumoInterno;
-import practica1.facturación.Descuento;
-import practica1.facturación.Facturacion;
-import practica1.facturación.Urgente;
-import practica1.listas.UtilidadesParaListas;
+import practica1.modelo.Persona;
+import practica1.modelo.Proyecto;
+import practica1.modelo.Resultados.Documentacion;
+import practica1.modelo.Resultados.Resultado;
+import practica1.modelo.Tarea;
+import practica1.modelo.facturación.ConsumoInterno;
+import practica1.modelo.facturación.Descuento;
+import practica1.modelo.facturación.Facturacion;
+import practica1.modelo.facturación.Urgente;
+import practica1.modelo.listas.UtilidadesParaListas;
 
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;

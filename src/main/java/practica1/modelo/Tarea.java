@@ -1,10 +1,10 @@
-package practica1;
+package practica1.modelo;
 
-import practica1.Resultados.Resultado;
-import practica1.excepciones.FechasException;
-import practica1.facturación.Facturacion;
-import practica1.listas.tieneClave;
-import practica1.listas.tieneLista;
+import practica1.modelo.Resultados.Resultado;
+import practica1.modelo.excepciones.FechasException;
+import practica1.modelo.facturación.Facturacion;
+import practica1.modelo.listas.tieneClave;
+import practica1.modelo.listas.tieneLista;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,9 +1,9 @@
-package practica1;
+package practica1.modelo;
 
-import practica1.excepciones.PersonasException;
-import practica1.excepciones.TareaExcepcion;
-import practica1.listas.UtilidadesParaListas;
-import practica1.listas.tieneLista;
+import practica1.modelo.excepciones.PersonasException;
+import practica1.modelo.excepciones.TareaExcepcion;
+import practica1.modelo.listas.UtilidadesParaListas;
+import practica1.modelo.listas.tieneLista;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,8 +11,8 @@ import java.util.List;
 
 public class Proyecto implements tieneLista<Persona>, Serializable {
     String nombre;
-    List<Tarea> tareas;
-    List<Persona> personas;
+    public List<Tarea> tareas;
+    public List<Persona> personas;
 
     public Proyecto (String nombre){
         this.nombre=nombre;

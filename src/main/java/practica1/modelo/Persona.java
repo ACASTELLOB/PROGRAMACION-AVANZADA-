@@ -1,7 +1,7 @@
-package practica1;
+package practica1.modelo;
 
-import practica1.listas.tieneClave;
-import practica1.listas.tieneLista;
+import practica1.modelo.listas.tieneClave;
+import practica1.modelo.listas.tieneLista;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class Persona implements tieneLista<Tarea>, tieneClave<String>, Serializa
     String correo;
     List<Tarea> tareasResponsable;
 
-    Persona (String nombre, String correo){
+    public Persona (String nombre, String correo){
         this.nombre = nombre;
         this.correo = correo;
         tareasResponsable = new ArrayList<>();

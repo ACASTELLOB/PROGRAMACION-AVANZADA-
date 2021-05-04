@@ -1,15 +1,20 @@
-package practica1;
+package practica1.controlador;
 
-import practica1.Resultados.Documentacion;
-import practica1.Resultados.PagWeb;
-import practica1.Resultados.Programa;
-import practica1.excepciones.FechasException;
-import practica1.excepciones.PersonasException;
-import practica1.excepciones.TareaExcepcion;
-import practica1.facturación.ConsumoInterno;
-import practica1.facturación.Descuento;
-import practica1.facturación.Facturacion;
-import practica1.facturación.Urgente;
+import practica1.modelo.Persona;
+import practica1.modelo.Proyecto;
+import practica1.modelo.Resultados.Documentacion;
+import practica1.modelo.Resultados.PagWeb;
+import practica1.modelo.Resultados.Programa;
+import practica1.modelo.Tarea;
+import practica1.modelo.excepciones.FechasException;
+import practica1.modelo.excepciones.PersonasException;
+import practica1.modelo.excepciones.TareaExcepcion;
+import practica1.modelo.facturación.ConsumoInterno;
+import practica1.modelo.facturación.Descuento;
+import practica1.modelo.facturación.Facturacion;
+import practica1.modelo.facturación.Urgente;
+
+
 
 import java.io.*;
 import java.util.List;
