@@ -153,7 +153,6 @@ public class AñadirTarea {
         panelFacturacion.add(descuento);
         panelFacturacion.add(urgente);
         //ventana.add(panelFacturacion);
-
         panelSouth.add(panelInterno);
         panelSouth.add(panelFacturacion);
 
