@@ -122,4 +122,8 @@ public class Proyecto implements tieneLista<Persona>, Serializable {
     public List<Persona> getLista() {
         return this.personas;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
 }

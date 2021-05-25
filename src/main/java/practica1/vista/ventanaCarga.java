@@ -1,5 +1,7 @@
 package practica1.vista;
 
+import practica1.modelo.Proyecto;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +26,7 @@ public class ventanaCarga{
 
         ventana.add(panel);
         ventana.pack();
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
 
     }
@@ -36,7 +39,9 @@ public class ventanaCarga{
             if (texto.equals("Cargar")){
                 System.out.println("Soy el boton cargar");
             }else{
-                System.out.println("Soy el boton nuevo");
+                Proyecto proyecto = new Proyecto("Pruebas");
+                ventanaPrincipal ventanaP = new ventanaPrincipal(proyecto);
+                ventanaP.ejecutar();
             }
         }
 
