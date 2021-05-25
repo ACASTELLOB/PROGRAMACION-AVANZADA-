@@ -7,9 +7,7 @@ import practica1.modelo.Tarea;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.text.Utilities;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ventanaPrincipal {
@@ -36,6 +34,8 @@ public class ventanaPrincipal {
         }
 
         JFrame ventana = new JFrame(proyecto.getNombre());
+
+        JButton guardar = new JButton("Guardar");
 
         JPanel central = new JPanel();
         central.setLayout(new GridLayout(2,2));
@@ -88,6 +88,7 @@ public class ventanaPrincipal {
         contenedor.add(panelPersonas, BorderLayout.LINE_START);
         contenedor.add(panelTareas, BorderLayout.LINE_END);
         contenedor.add(central, BorderLayout.CENTER);
+        contenedor.add(guardar,BorderLayout.PAGE_END);
 
         ventana.pack();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -29,7 +29,7 @@ public class main {
         proyecto.añadirTarea(t1);
         proyecto.añadirTarea(t2);
         proyecto.añadirTarea(t3);
-        ventanaPrincipal ventanaP = new ventanaPrincipal(proyecto);
-        ventanaP.ejecutar();
+        //ventanaPrincipal ventanaP = new ventanaPrincipal(proyecto);
+        //ventanaP.ejecutar();
     }
 }
