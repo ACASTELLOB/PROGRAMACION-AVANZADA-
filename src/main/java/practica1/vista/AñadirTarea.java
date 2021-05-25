@@ -156,10 +156,6 @@ public class AñadirTarea {
         panelSouth.add(panelInterno);
         panelSouth.add(panelFacturacion);
 
-
-
-
-
         ventana.add(panelTitulo, BorderLayout.NORTH);
         ventana.add(panelResultado, BorderLayout.CENTER);
         ventana.add(panelSouth,BorderLayout.SOUTH);
