@@ -31,13 +31,12 @@ public class AñadirTarea {
     JRadioButton programa = new JRadioButton("Programa");
 
     JRadioButton siInterno = new JRadioButton("Sí");
-    JRadioButton noInterno = new JRadioButton("no");
+    JRadioButton noInterno = new JRadioButton("No");
 
     JRadioButton descuento = new JRadioButton("descuento");
     JRadioButton urgente = new JRadioButton("urgente");
 
     String res;
-    Boolean interno = true;
 
     public void ejecutar() {
 
@@ -84,9 +83,9 @@ public class AñadirTarea {
         ButtonGroup esInterno = new ButtonGroup();
         esInterno.add(siInterno);
         esInterno.add(noInterno);
+
         panelInterno.add(siInterno);
         panelInterno.add(noInterno);
-        //ventana.add(panelInterno);
 
         JPanel panelFacturacion = new JPanel();//si es interno no debe salir esta pantalla
         panelFacturacion.setLayout(new GridLayout(1, 2));
@@ -94,6 +93,9 @@ public class AñadirTarea {
         ButtonGroup esFacturacion = new ButtonGroup();
         esFacturacion.add(descuento);
         esFacturacion.add(urgente);
+        descuento.setEnabled(false);
+        urgente.setEnabled(false);
+
         panelFacturacion.add(facturacion);
         panelFacturacion.add(descuento);
         panelFacturacion.add(urgente);
@@ -149,6 +151,14 @@ public class AñadirTarea {
                     break;
                 case "Programa":
                     res = "Programa";
+                    break;
+                case "Si":
+                    descuento.setEnabled(false);
+                    urgente.setEnabled(false);
+                    break;
+                case "No":
+                    descuento.setEnabled(true);
+                    urgente.setEnabled(true);
                     break;
             }
         }
