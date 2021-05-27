@@ -1,11 +1,15 @@
 package practica1.vista;
 
+import practica1.controlador.Controlador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CrearPagWeb {
+
+    Controlador controlador;
 
     JFrame ventana;
 
@@ -20,7 +24,8 @@ public class CrearPagWeb {
 
     JButton aceptar;
 
-    public void ejecutar(){
+    public void ejecutar(Controlador controlador){
+        this.controlador = controlador;
         ventana = new JFrame();
 
         aceptar = new JButton("Aceptar");
@@ -37,6 +42,8 @@ public class CrearPagWeb {
         ventana.add(si);
         ventana.add(no);
         ventana.add(aceptar);
+
+        aceptar.addActionListener(new actionListener());
 
         ventana.pack();
         ventana.setVisible(true);
@@ -57,7 +64,7 @@ public class CrearPagWeb {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-
+            controlador.añadirTarea();
         }
     }
 }

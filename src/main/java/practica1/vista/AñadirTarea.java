@@ -1,5 +1,7 @@
 package practica1.vista;
 
+import practica1.controlador.Controlador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +11,11 @@ import java.awt.event.ItemListener;
 
 public class AñadirTarea {
 
+    Controlador controlador;
+    VentanaPrincipal ventanaPrincipal;
+
     JFrame ventana;
+    JPanel panelFacturacion;
 
     JLabel texto = new JLabel("Añadir una tarea");
     JLabel titulo = new JLabel("Introduce el título de la tarea:");
@@ -36,17 +42,24 @@ public class AñadirTarea {
     JRadioButton descuento = new JRadioButton("descuento");
     JRadioButton urgente = new JRadioButton("urgente");
 
+    JButton siguiente;
+
     String res;
 
-    public void ejecutar() {
+    public void ejecutar(Controlador controlador, VentanaPrincipal ventanaPrincipal) {
+        this.ventanaPrincipal = ventanaPrincipal;
+        this.controlador = controlador;
 
         ventana = new JFrame(" Añadir una tarea");
+
+        siguiente = new JButton("Siguiente");
+        siguiente.addActionListener(new Escuchador());
 
         JPanel superior = new JPanel();
         superior.add(texto);
 
         JPanel panelTitulo = new JPanel();
-        panelTitulo.setLayout(new GridLayout(5, 2));
+        panelTitulo.setLayout(new GridLayout(6, 2));
         panelTitulo.add(titulo);
         panelTitulo.add(introducirTitulo);
         panelTitulo.add(descripcion);
@@ -57,6 +70,8 @@ public class AñadirTarea {
         panelTitulo.add(introducirPrioridad);
         panelTitulo.add(coste);
         panelTitulo.add(introducirCoste);
+        panelTitulo.add(hora);
+        panelTitulo.add(introducirHora);
 
         JPanel panelResultado = new JPanel();
         JLabel result = new JLabel("Introduce el tipo de resultado que deseas:");
@@ -87,14 +102,14 @@ public class AñadirTarea {
         panelInterno.add(siInterno);
         panelInterno.add(noInterno);
 
-        JPanel panelFacturacion = new JPanel();//si es interno no debe salir esta pantalla
+        panelFacturacion = new JPanel();//si es interno no debe salir esta pantalla
         panelFacturacion.setLayout(new GridLayout(1, 2));
         JLabel facturacion = new JLabel("Introduce el tipo de facturación");
         ButtonGroup esFacturacion = new ButtonGroup();
         esFacturacion.add(descuento);
         esFacturacion.add(urgente);
-        descuento.setEnabled(false);
-        urgente.setEnabled(false);
+        siInterno.addActionListener(new actionListener());
+        noInterno.addActionListener(new actionListener());
 
         panelFacturacion.add(facturacion);
         panelFacturacion.add(descuento);
@@ -102,9 +117,10 @@ public class AñadirTarea {
         //ventana.add(panelFacturacion);
         panelSouth.add(panelInterno);
         panelSouth.add(panelFacturacion);
+        panelSouth.add(siguiente);
 
         ventana.add(panelTitulo, BorderLayout.NORTH);
-        ventana.add(panelFacturacion, BorderLayout.CENTER);
+        ventana.add(panelResultado, BorderLayout.CENTER);
         ventana.add(panelSouth, BorderLayout.SOUTH);
 
         ventana.pack();
@@ -137,11 +153,11 @@ public class AñadirTarea {
     }
     public String getFacturación(){
         if (urgente.isSelected()){
-            return "Urgente";
-        }else if (descuento.isSelected()){
-            return "Descuento";
-        }else{
-            return "Interno";
+                return "Urgente";
+            }else if (descuento.isSelected()){
+                return "Descuento";
+            }else{
+                return "Interno";
         }
     }
 
@@ -151,6 +167,7 @@ public class AñadirTarea {
         public void actionPerformed(ActionEvent actionEvent) {
             JRadioButton boton = (JRadioButton) actionEvent.getSource();
             String resultado = boton.getText();
+            System.out.println(resultado);
             switch (resultado) {
                 case "Documentación":
                     res = "Documentación";
@@ -161,7 +178,8 @@ public class AñadirTarea {
                 case "Programa":
                     res = "Programa";
                     break;
-                case "Si":
+                case "Sí":
+                    System.out.println("puta");
                     descuento.setEnabled(false);
                     urgente.setEnabled(false);
                     break;
@@ -170,6 +188,30 @@ public class AñadirTarea {
                     urgente.setEnabled(true);
                     break;
             }
+        }
+    }
+
+    public class Escuchador implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+                    switch (res) {
+                        case "Documentación":
+                            CrearDocumentacion crearDocumentacion = new CrearDocumentacion();
+                            ventanaPrincipal.setCrearDocumentacion(crearDocumentacion);
+                            crearDocumentacion.ejecutar(controlador);
+                            break;
+                        case "Web":
+                            CrearPagWeb crearPagWeb = new CrearPagWeb();
+                            ventanaPrincipal.setCrearPagWeb(crearPagWeb);
+                            crearPagWeb.ejecutar(controlador);
+                            break;
+                        case "Programa":
+                            CrearPrograma crearPrograma = new CrearPrograma();
+                            ventanaPrincipal.setCrearPrograma(crearPrograma);
+                            crearPrograma.ejecutar(controlador);
+                            break;
+                    }
         }
     }
 }

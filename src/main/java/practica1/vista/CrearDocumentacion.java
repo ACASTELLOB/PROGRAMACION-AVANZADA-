@@ -1,11 +1,15 @@
 package practica1.vista;
 
+import practica1.controlador.Controlador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CrearDocumentacion {
+
+    Controlador controlador;
 
     JFrame ventana;
 
@@ -19,7 +23,8 @@ public class CrearDocumentacion {
 
     JButton aceptar;
 
-    public void ejecutar(){
+    public void ejecutar(Controlador controlador){
+        this.controlador = controlador;
         ventana = new JFrame();
 
         aceptar = new JButton("Aceptar");
@@ -32,6 +37,8 @@ public class CrearDocumentacion {
         ventana.add(espacioEnDisco);
         ventana.add(introducirEspacioEnDisco);
         ventana.add(aceptar);
+
+        aceptar.addActionListener(new actionListener());
 
         ventana.pack();
         ventana.setVisible(true);
@@ -49,7 +56,7 @@ public class CrearDocumentacion {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-
+            controlador.añadirTarea();
         }
     }
 }

@@ -18,6 +18,7 @@ import java.util.List;
 
 public class VentanaPrincipal implements Vista{
 
+    VentanaPrincipal ventanaPrincipal = this;
     Persona personaActual;
     Tarea tareaActual;
 
@@ -269,8 +270,17 @@ public class VentanaPrincipal implements Vista{
     @Override
     public double getCosteCambiado(){return Double.parseDouble(cambiarCoste.getCoste());}
 
+    public void setCrearDocumentacion(CrearDocumentacion crearDocumentacion){
+        this.crearDocumentacion = crearDocumentacion;
+    }
 
+    public void setCrearPagWeb(CrearPagWeb crearPagWeb) {
+        this.crearPagWeb = crearPagWeb;
+    }
 
+    public void setCrearPrograma(CrearPrograma crearPrograma) {
+        this.crearPrograma = crearPrograma;
+    }
 
     public class EscuchadorListaPersona implements ListSelectionListener {
 
@@ -328,13 +338,13 @@ public class VentanaPrincipal implements Vista{
                     break;
                 case "Añadir tarea":
                     añadirTarea = new AñadirTarea();
-                    añadirTarea.ejecutar();
+                    añadirTarea.ejecutar(controlador, ventanaPrincipal);
                     break;
                 case "Finalizar tarea":
-
+                    controlador.finalizarTarea();
                     break;
                 case "Añadir responsable":
-
+                    controlador.añadirResponsable();
                     break;
                 case "Cambiar coste de la tarea":
                     cambiarCoste = new CambiarCoste();

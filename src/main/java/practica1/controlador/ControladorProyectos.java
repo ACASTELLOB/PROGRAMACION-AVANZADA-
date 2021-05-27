@@ -99,7 +99,7 @@ public class ControladorProyectos implements Controlador{
     public  Tarea crearWeb( String ident, int horas, boolean esInterno, String tituloTarea, String descripcion, int prioridad){
         String lenguaje = vista.getLenguajeWeb();
         String backend = vista.getBackend();
-        boolean esEstatica = vista.getEstatica;
+        boolean esEstatica = vista.getEstatica();
         PagWeb web = new PagWeb(ident, horas, esInterno, esEstatica, lenguaje, backend);
         double coste= vista.getCoste();
         Facturacion facturacion = crearFacturacion();
@@ -131,7 +131,7 @@ public class ControladorProyectos implements Controlador{
                 return facturacion;
         }
         return null;
-    }*/
+    }
 
     public void cambiarCoste(){
         Tarea tarea= vista.getTareaActual();

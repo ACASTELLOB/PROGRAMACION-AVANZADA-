@@ -44,6 +44,7 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
             }
         }
         tareas.add(tarea);
+        vista.actualizarVista();
     }
 
     public List<Persona> listarPersonas(){
@@ -70,6 +71,7 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
                 return true;
             }
         }
+        vista.actualizarVista();
         return false;
     }
 
@@ -81,6 +83,7 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
                 return true;
             }
         }
+        vista.actualizarVista();
         return false;
     }
 
@@ -101,6 +104,7 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
                 }
             }
         }
+        vista.actualizarVista();
     }
 
     @Override
@@ -124,6 +128,7 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
                 }
             }
         }
+        vista.actualizarVista();
     }
 
     @Override
