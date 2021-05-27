@@ -4,20 +4,27 @@ import practica1.modelo.excepciones.PersonasException;
 import practica1.modelo.excepciones.TareaExcepcion;
 import practica1.modelo.listas.UtilidadesParaListas;
 import practica1.modelo.listas.tieneLista;
+import practica1.vista.Vista;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Proyecto implements tieneLista<Persona>, Serializable {
+public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
     String nombre;
     public List<Tarea> tareas;
     public List<Persona> personas;
+    private Vista vista;
 
     public Proyecto (String nombre){
         this.nombre=nombre;
         tareas = new ArrayList<>();
         personas = new ArrayList<>();
+    }
+
+    @Override
+    public void setVista(Vista vista) {
+        this.vista=vista;
     }
 
     public void añadirPersona(Persona persona){
