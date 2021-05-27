@@ -36,6 +36,7 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
         vista.actualizarVista();
     }
 
+    @Override
     public void añadirTarea(Tarea tarea) {
         for(Tarea elem:tareas){
             if(tarea.titulo.equals(elem.titulo)){
