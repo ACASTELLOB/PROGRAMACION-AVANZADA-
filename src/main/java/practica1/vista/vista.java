@@ -1,18 +1,14 @@
 package practica1.vista;
 
-import javax.swing.*;
+import practica1.controlador.Controlador;
+import practica1.modelo.Modelo;
 
-public class vista {
-    public static void main(String args[]){
-        JFrame ventana = new JFrame("Nueva ventana");
+public interface Vista {
 
-        String[] datos = {"p1","p2"};
-        JList personas = new JList(datos);
-        JScrollPane panelPersonas = new JScrollPane(personas);
-        personas.setVisibleRowCount(5);
+    void setControlador(Controlador controlador);
+    void setModelo(Modelo modelo);
 
-        ventana.getContentPane().add(panelPersonas);
-        ventana.pack();
-        ventana.setVisible(true);
-    }
+    String getNombre();
+    String getCorreo();
+
 }
