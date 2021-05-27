@@ -81,6 +81,9 @@ public class VentanaPrincipal implements Vista{
         JButton mostrarTareasSinPersonas = new JButton("Mostrar tareas sin responsable");
         mostrarTareasSinPersonas.addActionListener(new Escuchador());
 
+        JButton añadirEliminarPersonaTarea = new JButton("Añadir o elimnar persona de tarea");
+        añadirEliminarPersonaTarea.addActionListener(new Escuchador());
+
         //Creación de los paneles de botones de persona y tarea
         JPanel panelBotonesPersona = new JPanel();
         panelBotonesPersona.setLayout(new GridLayout(2,1));
@@ -117,6 +120,7 @@ public class VentanaPrincipal implements Vista{
         panelBotonesTarea.add(añadirResponsable);
         panelBotonesTarea.add(cambiarCoste);
         panelBotonesTarea.add(mostrarTareasSinPersonas);
+        panelBotonesTarea.add(añadirEliminarPersonaTarea);
 
         //Añadir Botones y JTextArea al panel central
         central.add(persona);
@@ -348,12 +352,15 @@ public class VentanaPrincipal implements Vista{
                     break;
                 case "Cambiar coste de la tarea":
                     cambiarCoste = new CambiarCoste();
-                    cambiarCoste.ejecutar();
+                    cambiarCoste.ejecutar(controlador);
                     break;
                 case "Mostrar tareas sin responsable":
                     MostrarTareaSinPersonas mostrarTareaSinPersonas = new MostrarTareaSinPersonas();
                     mostrarTareaSinPersonas.setModelo(proyecto);
                     mostrarTareaSinPersonas.ejecutar();
+                    break;
+                case "Añadir o elimnar persona de tarea":
+                    controlador.IntrodELiminaPersonaTarea();
                     break;
                 case "Guardar":
                     try {
