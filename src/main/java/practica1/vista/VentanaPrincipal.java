@@ -177,6 +177,77 @@ public class VentanaPrincipal implements Vista{
 
     public Tarea getTareaActual(){return tareaActual;}
 
+    @Override
+    public String getTitulo() {
+        return añadirTarea.getTitulo();
+    }
+
+    @Override
+    public String getDescripcion() {
+        return añadirTarea.getDescripcion();
+    }
+
+    @Override
+    public String getIdentificador() {
+        return añadirTarea.getIdentificador();
+    }
+
+    @Override
+    public int getPrioridad() {
+
+        return Integer.parseInt(añadirTarea.getPrioridad());
+    }
+
+    @Override
+    public int getHora() {
+        return Integer.parseInt(añadirTarea.getHora());
+    }
+
+    @Override
+    public String getFormato() {
+        return añadirTarea.getFormato();
+    }
+
+    @Override
+    public int getNumPag() {
+        return Integer.parseInt(añadirTarea.getNumPag());
+    }
+
+    @Override
+    public int getEspDisc() {
+        return Integer.parseInt(añadirTarea.getEspDisc());
+    }
+
+    @Override
+    public String getLenguajeWeb() {
+        return añadirTarea.getLenguajeWeb();
+    }
+
+    @Override
+    public String getBackend() {
+        return añadirTarea.getBackend();
+    }
+
+    @Override
+    public int getNumLineasCodigo() {
+        return Integer.parseInt(añadirTarea.getNumLineasCodigo());
+    }
+
+    @Override
+    public int getNumModulos() {
+        return Integer.parseInt(añadirTarea.getNumModulos());
+    }
+
+    @Override
+    public String getLenguajeProg(){return añadirTarea.getLenguajeProg();}
+
+    @Override
+    public double getCoste(){return Double.parseDouble(añadirTarea.getCoste());}
+
+    @Override
+    public double getCosteCambiado(){return Double.parseDouble(cambiarCoste.getCoste());}
+
+
     public class EscuchadorListaPersona implements ListSelectionListener {
 
         List<Persona> personas;

@@ -61,6 +61,7 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
         return UtilidadesParaListas.elementosConListaVacia(this.listarTareas());
     }
 
+    @Override
     public Boolean cambiarCosteTarea(String titulo, double coste){
         for(Tarea elem:tareas){
             if(elem.titulo.equals(titulo)){
@@ -71,6 +72,7 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
         return false;
     }
 
+    @Override
     public Boolean finalizarTarea(String titulo){
         for(Tarea elem:tareas){
             if(elem.titulo.equals(titulo)){
@@ -81,6 +83,7 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
         return false;
     }
 
+    @Override
     public void responsable(String nombrePersona, String tituloTarea){
         Persona persona =null;
         for(Persona elem:personas) {
@@ -99,6 +102,7 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
         }
     }
 
+    @Override
     public void añadirEliminarPersona(String nombrePersona, String tituloTarea){
         Persona persona= null;
         for(Persona elem:personas) {

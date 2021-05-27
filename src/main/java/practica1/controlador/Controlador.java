@@ -7,4 +7,10 @@ public interface Controlador {
     void setModelo(Modelo modelo);
     void setVista(Vista vista);
     void añadirPersona();
+    void añadirTarea();
+    void cambiarCoste();
+    void añadirResponsable();
+    void finalizarTarea();
+
+    void IntrodELiminaPersonaTarea();
 }
