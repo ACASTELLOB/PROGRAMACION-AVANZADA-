@@ -28,4 +28,5 @@ public class CambiarCoste {
         ventana.setVisible(true);
 
     }
+    public String getCoste(){return introducirCoste.getText();}
 }
