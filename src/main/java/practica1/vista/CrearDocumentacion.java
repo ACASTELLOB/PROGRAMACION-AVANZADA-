@@ -2,6 +2,8 @@ package practica1.vista;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CrearDocumentacion {
 
@@ -15,18 +17,31 @@ public class CrearDocumentacion {
     JTextField introducirEspacioEnDisco = new JTextField(20);
     JTextField introducirNumPag = new JTextField(20);
 
+    JButton aceptar;
+
     public void ejecutar(){
         ventana = new JFrame();
 
-        ventana.setLayout(new GridLayout(3, 2));
+        aceptar = new JButton("Aceptar");
+
+        ventana.setLayout(new GridLayout(4, 2));
         ventana.add(formato);
         ventana.add(introducirFormato);
         ventana.add(numPag);
         ventana.add(introducirNumPag);
         ventana.add(espacioEnDisco);
         ventana.add(introducirEspacioEnDisco);
+        ventana.add(aceptar);
 
         ventana.pack();
         ventana.setVisible(true);
+    }
+
+    class actionListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+
+        }
     }
 }

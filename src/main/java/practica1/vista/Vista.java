@@ -39,13 +39,6 @@ public interface Vista {
     Tarea getTareaActual();
     double getCosteCambiado();
 
-
-
-
-
-
-
-
     void actualizarVista();
 
 }

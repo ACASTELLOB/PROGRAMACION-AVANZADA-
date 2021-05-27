@@ -2,6 +2,8 @@ package practica1.vista;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CrearPagWeb {
 
@@ -16,23 +18,35 @@ public class CrearPagWeb {
     JRadioButton si = new JRadioButton("Sí");
     JRadioButton no = new JRadioButton("no");
 
+    JButton aceptar;
+
     public void ejecutar(){
         ventana = new JFrame();
+
+        aceptar = new JButton("Aceptar");
 
         ButtonGroup esEstatica = new ButtonGroup();
         esEstatica.add(si);
         esEstatica.add(no);
 
-        ventana.setLayout(new GridLayout(3,2));
+        ventana.setLayout(new GridLayout(4,2));
         ventana.add(lenguajeWeb);
         ventana.add(introducirLenguajeWeb);
         ventana.add(backend);
         ventana.add(introducirBackend);
         ventana.add(si);
         ventana.add(no);
+        ventana.add(aceptar);
 
         ventana.pack();
         ventana.setVisible(true);
     }
 
+    class actionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+
+        }
+    }
 }
