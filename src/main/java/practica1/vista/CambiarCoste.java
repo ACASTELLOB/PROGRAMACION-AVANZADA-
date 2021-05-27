@@ -11,7 +11,6 @@ public class CambiarCoste {
 
     JFrame ventana;
     Controlador controlador;
-    JLabel texto = new JLabel("Cambiar coste de la tarea");
     JLabel coste = new JLabel("Introduce el coste:");
     JTextField introducirCoste = new JTextField(20);
     JButton aceptar;
@@ -21,14 +20,15 @@ public class CambiarCoste {
 
         ventana= new JFrame(" Cambiar coste");
         aceptar = new JButton("Aceptar");
+        aceptar.addActionListener(new Escuchador());
 
         JPanel superior = new JPanel();
-        superior.add(texto);
 
         JPanel centro = new JPanel();
-        centro.setLayout(new GridLayout(1,2));
+        centro.setLayout(new GridLayout(1,3));
         centro.add(coste);
         centro.add(introducirCoste);
+        centro.add(aceptar);
 
         ventana.add(superior, BorderLayout.PAGE_START);
         ventana.add(centro, BorderLayout.CENTER);
