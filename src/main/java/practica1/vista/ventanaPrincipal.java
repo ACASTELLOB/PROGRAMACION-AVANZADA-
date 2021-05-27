@@ -8,6 +8,11 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 public class ventanaPrincipal {
@@ -35,10 +40,33 @@ public class ventanaPrincipal {
 
         JFrame ventana = new JFrame(proyecto.getNombre());
 
-        JButton guardar = new JButton("Guardar");
-
         JPanel central = new JPanel();
         central.setLayout(new GridLayout(2,2));
+
+        //Creación de botones
+        JButton guardar = new JButton("Guardar");
+        guardar.addActionListener(new Escuchador());
+
+        JButton añadirP = new JButton("Añadir persona");
+        añadirP.addActionListener(new Escuchador());
+
+        JButton mostrarPersonasSinTarea = new JButton("Mostrar personas sin tarea");
+        mostrarPersonasSinTarea.addActionListener(new Escuchador());
+
+        JButton añadirT = new JButton("Añadir tarea");
+        añadirP.addActionListener(new Escuchador());
+
+        JButton finalizarT = new JButton("Finalizar tarea");
+        guardar.addActionListener(new Escuchador());
+
+        JButton añadirResponsable = new JButton("Añadir responsable");
+        añadirP.addActionListener(new Escuchador());
+
+        JButton cambiarCoste = new JButton("");
+        guardar.addActionListener(new Escuchador());
+
+        JButton mostrarTareasSinPersonas = new JButton("Añadir persona");
+        añadirP.addActionListener(new Escuchador());
 
         //Creación de los paneles de botones de persona y tarea
         JPanel panelBotonesPersona = new JPanel();
@@ -66,9 +94,9 @@ public class ventanaPrincipal {
         listaTareas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaTareas.addListSelectionListener(new EscuchadorListaTarea(tareas,tarea));
 
-        //Crear botones y añadirlos al panel de botones de persona
-        panelBotonesPersona.add(new Button("Añadir persona"));
-        panelBotonesPersona.add(new Button("Mosotrar personas sin tarea"));
+        //Añadir botones al panel de botones de persona
+        panelBotonesPersona.add(añadirP);
+        panelBotonesPersona.add(mostrarPersonasSinTarea);
 
         //Crear botones y añadirlos al panel de botones de tarea
         panelBotonesTarea.add(new Button("Añadir tarea"));
@@ -133,4 +161,33 @@ public class ventanaPrincipal {
         }
     }
 
+    private class Escuchador implements ActionListener {
+        public void actionPerformed(ActionEvent actionEvent) {
+            JButton boton = (JButton) actionEvent.getSource();
+            String texto = boton.getText();
+            switch (texto) {
+                case "Añadir persona":
+                    System.out.println("putilla");
+                    AñadirPersona añadirPersona = new AñadirPersona();
+                    añadirPersona.ejecutar();
+                    break;
+                case "Atras":
+
+                    break;
+                case "Adelante":
+
+                    break;
+                case "Guardar":
+                    try {
+                        FileOutputStream fos = new FileOutputStream("proyecto.bin");
+                        ObjectOutputStream oos = new ObjectOutputStream(fos);
+                        oos.writeObject(proyecto);
+                        oos.close();
+                    } catch (IOException e) {
+                        System.out.println("Error al guardar el proyecto");
+                    }
+                    break;
+            }
+        }
+    }
 }

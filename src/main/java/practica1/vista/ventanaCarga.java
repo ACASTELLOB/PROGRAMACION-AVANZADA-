@@ -5,9 +5,7 @@ import practica1.modelo.Proyecto;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 
 public class ventanaCarga{
 
@@ -46,7 +44,6 @@ public class ventanaCarga{
                     ObjectInputStream ois = new ObjectInputStream(fis);
                     Proyecto proyecto = (Proyecto) ois.readObject();
                     ois.close();
-                    proyecto = new Proyecto(proyecto.getNombre());
                     ventanaPrincipal ventanaP = new ventanaPrincipal(proyecto);
                     ventanaP.ejecutar();
                     ventana.dispose();
@@ -55,7 +52,7 @@ public class ventanaCarga{
                 } catch (ClassNotFoundException ce) {
                     System.out.println("No se ha encontrado la clase necesaria para cargar el fichero");
                 }
-                }else{
+            }else{
                 ventanaNombre ventanaN = new ventanaNombre();
                 ventanaN.ejecutar();
                 ventana.dispose();
