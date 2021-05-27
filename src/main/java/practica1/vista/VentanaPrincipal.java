@@ -262,6 +262,11 @@ public class VentanaPrincipal implements Vista{
     }
 
     @Override
+    public String getFacturación() {
+        return añadirTarea.getFacturación();
+    }
+
+    @Override
     public double getCosteCambiado(){return Double.parseDouble(cambiarCoste.getCoste());}
 
 

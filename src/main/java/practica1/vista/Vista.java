@@ -34,6 +34,7 @@ public interface Vista {
     int getNumModulos();
     double getCoste();
     String getRes();
+    String getFacturación();
 
 //gets personas y tareas
     Persona getPersonaActual();

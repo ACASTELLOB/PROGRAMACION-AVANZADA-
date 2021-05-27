@@ -135,6 +135,15 @@ public class AñadirTarea {
         if (siInterno.isSelected()) return true;
         else return false;
     }
+    public String getFacturación(){
+        if (urgente.isSelected()){
+            return "Urgente";
+        }else if (descuento.isSelected()){
+            return "Descuento";
+        }else{
+            return "Interno";
+        }
+    }
 
     public class actionListener implements ActionListener {
 
