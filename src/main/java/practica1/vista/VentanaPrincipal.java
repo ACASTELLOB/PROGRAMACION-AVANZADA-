@@ -28,10 +28,12 @@ public class VentanaPrincipal implements Vista{
     AñadirPersona añadirPersona;
     AñadirTarea añadirTarea;
     CambiarCoste cambiarCoste;
+    CrearDocumentacion crearDocumentacion;
+    CrearPagWeb crearPagWeb;
+    CrearPrograma crearPrograma;
 
     private Controlador controlador;
     private Modelo proyecto;
-
 
     public void ejecutar(){
         List<Persona> personas = proyecto.listarPersonas();
@@ -193,6 +195,11 @@ public class VentanaPrincipal implements Vista{
     }
 
     @Override
+    public Boolean getInterno() {
+        return añadirTarea.getInterno();
+    }
+
+    @Override
     public int getPrioridad() {
 
         return Integer.parseInt(añadirTarea.getPrioridad());
@@ -205,47 +212,59 @@ public class VentanaPrincipal implements Vista{
 
     @Override
     public String getFormato() {
-        return añadirTarea.getFormato();
+        return crearDocumentacion.getFormato();
     }
 
     @Override
     public int getNumPag() {
-        return Integer.parseInt(añadirTarea.getNumPag());
+        return Integer.parseInt(crearDocumentacion.getNumPag());
     }
 
     @Override
     public int getEspDisc() {
-        return Integer.parseInt(añadirTarea.getEspDisc());
+        return Integer.parseInt(crearDocumentacion.getEspDisc());
+    }
+
+    @Override
+    public Boolean getEstatica() {
+        return crearPagWeb.getEstatica();
     }
 
     @Override
     public String getLenguajeWeb() {
-        return añadirTarea.getLenguajeWeb();
+        return crearPagWeb.getLenguajeWeb();
     }
 
     @Override
     public String getBackend() {
-        return añadirTarea.getBackend();
+        return crearPagWeb.getBackend();
     }
 
     @Override
     public int getNumLineasCodigo() {
-        return Integer.parseInt(añadirTarea.getNumLineasCodigo());
+        return Integer.parseInt(crearPrograma.getNumLineasCodigo());
     }
 
     @Override
     public int getNumModulos() {
-        return Integer.parseInt(añadirTarea.getNumModulos());
+        return Integer.parseInt(crearPrograma.getNumModulos());
     }
 
     @Override
-    public String getLenguajeProg(){return añadirTarea.getLenguajeProg();}
+    public String getLenguajeProg(){return crearPrograma.getLenguajeProg();}
 
     @Override
     public double getCoste(){return Double.parseDouble(añadirTarea.getCoste());}
 
     @Override
+    public String getRes() {
+        return añadirTarea.getRes() ;
+    }
+
+    @Override
     public double getCosteCambiado(){return Double.parseDouble(cambiarCoste.getCoste());}
+
+
 
 
     public class EscuchadorListaPersona implements ListSelectionListener {

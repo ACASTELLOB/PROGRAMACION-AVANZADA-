@@ -37,6 +37,14 @@ public class CrearDocumentacion {
         ventana.setVisible(true);
     }
 
+    public String getFormato(){ return introducirFormato.getText(); }
+    public String getNumPag(){
+        return introducirNumPag.getText();
+    }
+    public String getEspDisc(){
+        return introducirEspacioEnDisco.getText();
+    }
+
     class actionListener implements ActionListener{
 
         @Override

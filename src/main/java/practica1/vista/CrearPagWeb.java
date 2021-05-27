@@ -42,6 +42,17 @@ public class CrearPagWeb {
         ventana.setVisible(true);
     }
 
+    public String getLenguajeWeb(){
+        return introducirLenguajeWeb.getText();
+    }
+    public String getBackend(){
+        return introducirBackend.getText();
+    }
+    public Boolean getEstatica(){
+        if (si.isSelected()) return true;
+        else return false;
+    }
+
     class actionListener implements ActionListener {
 
         @Override

@@ -37,6 +37,16 @@ public class CrearPrograma {
         ventana.setVisible(true);
     }
 
+    public String getNumLineasCodigo(){
+        return introducirNumLineas.getText();
+    }
+    public String getLenguajeProg(){
+        return introducirLenguajeProg.getText();
+    }
+    public String getNumModulos(){
+        return introducirModulos.getText();
+    }
+
     class actionListener implements ActionListener {
 
         @Override
