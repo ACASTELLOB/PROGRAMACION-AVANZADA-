@@ -17,6 +17,7 @@ public class MostrarPersonasSinTarea {
 
     public void ejecutar(){
         ventana = new JFrame("Personas responsables de ninguna tarea");
+        lista = new JList();
 
         List<Persona> listaDatos = proyecto.listarPersonasSinTarea();
         String[] vectorDatos = new String[listaDatos.size()];
