@@ -1,7 +1,8 @@
 package practica1.vista;
 
+import practica1.controlador.Controlador;
+import practica1.modelo.Modelo;
 import practica1.modelo.Persona;
-import practica1.modelo.Proyecto;
 import practica1.modelo.Tarea;
 
 import javax.swing.*;
@@ -15,13 +16,19 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
-public class ventanaPrincipal {
+public class VentanaPrincipal implements Vista{
 
-    Proyecto proyecto;
+    JList listaPersonas;
+    JList listaTareas;
 
-    public ventanaPrincipal(Proyecto proyecto){
-        this.proyecto = proyecto;
-    }
+    JFrame ventana;
+    AñadirPersona añadirPersona;
+    AñadirTarea añadirTarea;
+    CambiarCoste cambiarCoste;
+
+    private Controlador controlador;
+    private Modelo proyecto;
+
 
     public void ejecutar(){
         List<Persona> personas = proyecto.listarPersonas();
@@ -38,10 +45,10 @@ public class ventanaPrincipal {
             datosTarea[i] = tareas.get(i).getClave();
         }
 
-        JFrame ventana = new JFrame(proyecto.getNombre());
+        ventana = new JFrame(proyecto.getNombre());
 
         JPanel central = new JPanel();
-        central.setLayout(new GridLayout(2,2));
+        central.setLayout(new GridLayout(2,3));
 
         //Creación de botones
         JButton guardar = new JButton("Guardar");
@@ -54,19 +61,19 @@ public class ventanaPrincipal {
         mostrarPersonasSinTarea.addActionListener(new Escuchador());
 
         JButton añadirT = new JButton("Añadir tarea");
-        añadirP.addActionListener(new Escuchador());
+        añadirT.addActionListener(new Escuchador());
 
         JButton finalizarT = new JButton("Finalizar tarea");
-        guardar.addActionListener(new Escuchador());
+        finalizarT.addActionListener(new Escuchador());
 
         JButton añadirResponsable = new JButton("Añadir responsable");
-        añadirP.addActionListener(new Escuchador());
+        añadirResponsable.addActionListener(new Escuchador());
 
-        JButton cambiarCoste = new JButton("");
-        guardar.addActionListener(new Escuchador());
+        JButton cambiarCoste = new JButton("Cambiar coste de la tarea");
+        cambiarCoste.addActionListener(new Escuchador());
 
-        JButton mostrarTareasSinPersonas = new JButton("Añadir persona");
-        añadirP.addActionListener(new Escuchador());
+        JButton mostrarTareasSinPersonas = new JButton("Mostrar tareas sin responsable");
+        mostrarTareasSinPersonas.addActionListener(new Escuchador());
 
         //Creación de los paneles de botones de persona y tarea
         JPanel panelBotonesPersona = new JPanel();
@@ -81,14 +88,14 @@ public class ventanaPrincipal {
         tarea.setEditable(false);
 
         //Creacion de la lista de personas
-        JList listaPersonas = new JList(datosPersona);
+        listaPersonas = new JList(datosPersona);
         JScrollPane panelPersonas = new JScrollPane(listaPersonas);
         listaPersonas.setVisibleRowCount(5);
         listaPersonas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaPersonas.addListSelectionListener(new EscuchadorListaPersona(personas,persona));
 
         //Creacion de la lisa de tareas
-        JList listaTareas = new JList(datosTarea);
+        listaTareas = new JList(datosTarea);
         JScrollPane panelTareas = new JScrollPane(listaTareas);
         listaTareas.setVisibleRowCount(5);
         listaTareas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -98,12 +105,12 @@ public class ventanaPrincipal {
         panelBotonesPersona.add(añadirP);
         panelBotonesPersona.add(mostrarPersonasSinTarea);
 
-        //Crear botones y añadirlos al panel de botones de tarea
-        panelBotonesTarea.add(new Button("Añadir tarea"));
-        panelBotonesTarea.add(new Button("Finalizar tarea"));
-        panelBotonesTarea.add(new Button("Añadir responsable"));
-        panelBotonesTarea.add(new Button("Cambiar coste"));
-        panelBotonesTarea.add(new Button("Mostrar tareas sin persona"));
+        //Añadir botones al panel de botones de tarea
+        panelBotonesTarea.add(añadirT);
+        panelBotonesTarea.add(finalizarT);
+        panelBotonesTarea.add(añadirResponsable);
+        panelBotonesTarea.add(cambiarCoste);
+        panelBotonesTarea.add(mostrarTareasSinPersonas);
 
         //Añadir Botones y JTextArea al panel central
         central.add(persona);
@@ -121,6 +128,46 @@ public class ventanaPrincipal {
         ventana.pack();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
+    }
+
+    public void actualizarVista(){
+        List<Persona> personas = proyecto.listarPersonas();
+        String[] datosPersona = new String[personas.size()];
+
+        for (int i = 0; i < datosPersona.length; i++){
+            datosPersona[i] = personas.get(i).getClave();
+        }
+
+        List<Tarea> tareas = proyecto.listarTareas();
+        String[] datosTarea = new String[tareas.size()];
+
+        for (int i = 0; i < datosTarea.length; i++){
+            datosTarea[i] = tareas.get(i).getClave();
+        }
+
+        listaPersonas.setListData(datosPersona);
+        listaTareas.setListData(datosTarea);
+
+        SwingUtilities.updateComponentTreeUI(listaPersonas);
+        SwingUtilities.updateComponentTreeUI(listaTareas);
+    }
+
+    @Override
+    public void setControlador(Controlador controlador) {
+        this.controlador = controlador;
+    }
+
+    @Override
+    public void setModelo(Modelo modelo) {
+        this.proyecto = modelo;
+    }
+
+    @Override
+    public String getNombre() { return añadirPersona.getNombre(); }
+
+    @Override
+    public String getCorreo() {
+        return añadirPersona.getCorreo();
     }
 
     public class EscuchadorListaPersona implements ListSelectionListener {
@@ -167,14 +214,29 @@ public class ventanaPrincipal {
             String texto = boton.getText();
             switch (texto) {
                 case "Añadir persona":
-                    System.out.println("putilla");
-                    AñadirPersona añadirPersona = new AñadirPersona();
-                    añadirPersona.ejecutar();
+                    añadirPersona = new AñadirPersona();
+                    añadirPersona.ejecutar(controlador);
                     break;
-                case "Atras":
+                case "Mostrar personas sin tarea":
+                    MostrarPersonasSinTarea mostrarPersonasSinTarea = new MostrarPersonasSinTarea();
+                    mostrarPersonasSinTarea.setModelo(proyecto);
+                    mostrarPersonasSinTarea.ejecutar();
+                    break;
+                case "Añadir tarea":
+                    añadirTarea = new AñadirTarea();
+                    añadirTarea.ejecutar();
+                    break;
+                case "Finalizar tarea":
 
                     break;
-                case "Adelante":
+                case "Añadir responsable":
+
+                    break;
+                case "Cambiar coste de la tarea":
+                    cambiarCoste = new CambiarCoste();
+                    cambiarCoste.ejecutar();
+                    break;
+                case "Mostrar tareas sin responsable":
 
                     break;
                 case "Guardar":

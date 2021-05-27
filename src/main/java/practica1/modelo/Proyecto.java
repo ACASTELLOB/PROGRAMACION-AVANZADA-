@@ -33,6 +33,7 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
         }
 
         personas.add(persona);
+        vista.actualizarVista();
     }
 
     public void añadirTarea(Tarea tarea) {
@@ -70,8 +71,6 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
         return false;
     }
 
-
-
     public Boolean finalizarTarea(String titulo){
         for(Tarea elem:tareas){
             if(elem.titulo.equals(titulo)){
@@ -81,7 +80,6 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
         }
         return false;
     }
-
 
     public void responsable(String nombrePersona, String tituloTarea){
         Persona persona =null;

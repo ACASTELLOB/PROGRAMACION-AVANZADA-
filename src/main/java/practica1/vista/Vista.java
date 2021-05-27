@@ -8,7 +8,11 @@ public interface Vista {
     void setControlador(Controlador controlador);
     void setModelo(Modelo modelo);
 
+    void ejecutar();
+
     String getNombre();
     String getCorreo();
+
+    void actualizarVista();
 
 }

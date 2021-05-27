@@ -1,5 +1,8 @@
 package practica1.vista;
 
+import practica1.controlador.Controlador;
+import practica1.controlador.ControladorProyectos;
+import practica1.modelo.Modelo;
 import practica1.modelo.Proyecto;
 
 import javax.swing.*;
@@ -7,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ventanaNombre {
+public class VentanaNombre {
 
     JFrame ventana;
     JTextField nombreProyecto;
@@ -34,8 +37,18 @@ public class ventanaNombre {
     private class Escuchador implements ActionListener {
 
         public void actionPerformed(ActionEvent actionEvent) {
-            Proyecto proyecto = new Proyecto(nombreProyecto.getText());
-            ventanaPrincipal ventanaP = new ventanaPrincipal(proyecto);
+            Modelo proyecto = new Proyecto(nombreProyecto.getText());
+            Controlador controlador = new ControladorProyectos();
+            Vista ventanaP = new VentanaPrincipal();
+
+            controlador.setModelo(proyecto);
+            controlador.setVista(ventanaP);
+
+            ventanaP.setControlador(controlador);
+            ventanaP.setModelo(proyecto);
+
+            proyecto.setVista(ventanaP);
+
             ventanaP.ejecutar();
             ventana.dispose();
         }

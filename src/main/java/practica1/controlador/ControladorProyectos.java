@@ -9,8 +9,6 @@ public class ControladorProyectos implements Controlador{
     Modelo modelo;
     Vista vista;
 
-
-
     public void setModelo(Modelo modelo){
         this.modelo= modelo;
     }
@@ -33,6 +31,4 @@ public class ControladorProyectos implements Controlador{
         }
 
     }
-
-
 }

@@ -6,11 +6,13 @@ import practica1.modelo.Modelo;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AñadirPersona implements  Vista{
+public class AñadirPersona{
+
+    JFrame ventana;
     private Controlador controlador;
-    private Modelo modelo;
 
     JLabel texto = new JLabel("Añadir una persona");
     JLabel nombre = new JLabel("Introduce el nombre:");
@@ -22,14 +24,10 @@ public class AñadirPersona implements  Vista{
     public void ejecutar(Controlador controlador){
         this.controlador = controlador;
 
-
-
-        JFrame ventana= new JFrame(" Añadir una persona");
-
+        ventana= new JFrame(" Añadir una persona");
 
         JPanel superior = new JPanel();
         superior.add(texto);
-
 
         JPanel centro = new JPanel();
         centro.setLayout(new GridLayout(2,2));
@@ -41,34 +39,26 @@ public class AñadirPersona implements  Vista{
         JPanel inferior =new JPanel();
         inferior.add(enviar);
 
-
-
         ventana.add(superior, BorderLayout.PAGE_START);
         ventana.add(centro, BorderLayout.CENTER);
         ventana.add(inferior, BorderLayout.PAGE_END);
         ventana.pack();
         ventana.setVisible(true);
 
-        final ActionListener añadirPersona = e -> controlador.añadirPersona();
-
-        introducirNombre.addActionListener(e -> introducirNombre.requestFocusInWindow());
-        introducirCorreo.addActionListener(añadirPersona);
-        enviar.addActionListener(añadirPersona);
-
-
+        enviar.addActionListener(new Escuchador());
     }
 
-    @Override
-    public void setControlador(Controlador controlador) {
-        this.controlador=controlador;
-    }
-
-    @Override
-    public void setModelo(Modelo modelo) {
-        this.modelo=modelo;
-    }
 
     public String getNombre() { return introducirNombre.getText(); }
 
     public String getCorreo(){ return introducirCorreo.getText(); }
+
+    class Escuchador implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            controlador.añadirPersona();
+            ventana.dispose();
+        }
+    }
 }

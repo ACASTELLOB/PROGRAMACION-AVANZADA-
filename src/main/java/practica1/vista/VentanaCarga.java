@@ -1,5 +1,8 @@
 package practica1.vista;
 
+import practica1.controlador.Controlador;
+import practica1.controlador.ControladorProyectos;
+import practica1.modelo.Modelo;
 import practica1.modelo.Proyecto;
 
 import javax.swing.*;
@@ -7,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
-public class ventanaCarga{
+public class VentanaCarga {
 
     JFrame ventana;
     JLabel texto = new JLabel("Cargar un proyecto?");
@@ -42,9 +45,12 @@ public class ventanaCarga{
                 try {
                     FileInputStream fis = new FileInputStream("proyecto.bin");
                     ObjectInputStream ois = new ObjectInputStream(fis);
-                    Proyecto proyecto = (Proyecto) ois.readObject();
+                    Modelo proyecto = (Proyecto) ois.readObject();
                     ois.close();
-                    ventanaPrincipal ventanaP = new ventanaPrincipal(proyecto);
+
+                    Controlador controlador = new ControladorProyectos();
+                    Vista ventanaP = new VentanaPrincipal();
+
                     ventanaP.ejecutar();
                     ventana.dispose();
                 } catch (IOException e) {
@@ -53,7 +59,7 @@ public class ventanaCarga{
                     System.out.println("No se ha encontrado la clase necesaria para cargar el fichero");
                 }
             }else{
-                ventanaNombre ventanaN = new ventanaNombre();
+                VentanaNombre ventanaN = new VentanaNombre();
                 ventanaN.ejecutar();
                 ventana.dispose();
             }

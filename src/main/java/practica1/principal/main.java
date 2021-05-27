@@ -6,12 +6,12 @@ import practica1.modelo.Resultados.Resultado;
 import practica1.modelo.Tarea;
 import practica1.modelo.facturación.ConsumoInterno;
 import practica1.modelo.facturación.Facturacion;
-import practica1.vista.ventanaCarga;
-import practica1.vista.ventanaPrincipal;
+import practica1.vista.VentanaCarga;
 
 public class main {
     public static void main(String args[]){
-        ventanaCarga ventana = new ventanaCarga();
+
+        VentanaCarga ventana = new VentanaCarga();
         ventana.ejecutar();
 
         Proyecto proyecto = new Proyecto("Pruebas");
