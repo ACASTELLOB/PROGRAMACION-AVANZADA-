@@ -11,11 +11,6 @@ public class AñadirTarea {
 
     JFrame ventana;
 
-    JPanel panelWeb;
-    JPanel panelDocumento;
-    JPanel panelPrograma;
-    JPanel panelCentral;
-
     JLabel texto = new JLabel("Añadir una tarea");
     JLabel titulo = new JLabel("Introduce el título de la tarea:");
     JLabel identificador = new JLabel("Introduce el identificador de la tarea:");
@@ -24,17 +19,6 @@ public class AñadirTarea {
     JLabel coste = new JLabel("Introducre el coste de la tarea");
     JLabel hora = new JLabel("Introduce el número de hroas de la tarea:");
 
-    JLabel formato = new JLabel("Introduce el formato del documento");
-    JLabel espacioEnDisco = new JLabel("Introduce el espacioEnDisco del documento");
-    JLabel numPag = new JLabel("Introduce el espacio en disco de tu documento");
-
-    JLabel lenguajeWeb = new JLabel("Introduce el lenguaje de la web");
-    JLabel backend = new JLabel("Introduce el backend de la web");
-
-    JLabel lenguajeProg = new JLabel("Introduce el Lenguaje del programa");
-    JLabel numLineas = new JLabel("Introduce el numero de líneas del programa");
-    JLabel modulos = new JLabel("Introduce el numero de modulos");
-
     JTextField introducirTitulo = new JTextField(20);
     JTextField introducirIdentificador = new JTextField(20);
     JTextField introducirPrioridad = new JTextField(20);
@@ -42,27 +26,18 @@ public class AñadirTarea {
     JTextField introducirDescripcion = new JTextField(20);
     JTextField introducirHora = new JTextField(20);
 
-    JTextField introducirFormato = new JTextField(20);
-    JTextField introducirEspacioEnDisco = new JTextField(20);
-    JTextField introducirNumPag = new JTextField(20);
-
-    JTextField introducirLenguajeWeb = new JTextField(20);
-    JTextField introducirBackend = new JTextField(20);
-
-    JTextField introducirLenguajeProg = new JTextField(20);
-    JTextField introducirNumLineas = new JTextField(20);
-    JTextField introducirModulos = new JTextField(20);
-
-
     JRadioButton documento = new JRadioButton("Documentación");
     JRadioButton web = new JRadioButton("Web");
     JRadioButton programa = new JRadioButton("Programa");
-    JRadioButton si = new JRadioButton("Sí");
-    JRadioButton no = new JRadioButton("no");
+
+    JRadioButton siInterno = new JRadioButton("Sí");
+    JRadioButton noInterno = new JRadioButton("no");
 
     JRadioButton descuento = new JRadioButton("descuento");
     JRadioButton urgente = new JRadioButton("urgente");
 
+    String res;
+    Boolean interno = true;
 
     public void ejecutar() {
 
@@ -84,39 +59,6 @@ public class AñadirTarea {
         panelTitulo.add(coste);
         panelTitulo.add(introducirCoste);
 
-        panelDocumento = new JPanel();
-
-        panelDocumento.setLayout(new GridLayout(3, 2));
-        panelDocumento.add(formato);
-        panelDocumento.add(introducirFormato);
-        panelDocumento.add(numPag);
-        panelDocumento.add(introducirNumPag);
-        panelDocumento.add(espacioEnDisco);
-        panelDocumento.add(introducirEspacioEnDisco);
-
-        panelWeb = new JPanel();
-
-        ButtonGroup esEstatica = new ButtonGroup();
-        esEstatica.add(si);
-        esEstatica.add(no);
-
-        panelWeb.setLayout(new GridLayout(3,2));
-        panelWeb.add(lenguajeWeb);
-        panelWeb.add(introducirLenguajeWeb);
-        panelWeb.add(backend);
-        panelWeb.add(introducirBackend);
-        panelWeb.add(si);
-        panelWeb.add(no);
-
-        panelPrograma = new JPanel();
-
-        panelPrograma.add(lenguajeProg);
-        panelPrograma.add(introducirLenguajeProg);
-        panelPrograma.add(modulos);
-        panelPrograma.add(introducirModulos);
-        panelPrograma.add(numLineas);
-        panelPrograma.add(introducirNumLineas);
-
         JPanel panelResultado = new JPanel();
         JLabel result = new JLabel("Introduce el tipo de resultado que deseas:");
 
@@ -125,20 +67,14 @@ public class AñadirTarea {
         resultado.add(web);
         resultado.add(programa);
 
-        documento.addItemListener(new itemListener());
-        web.addItemListener(new itemListener());
-        programa.addItemListener(new itemListener());
+        documento.addActionListener(new actionListener());
+        web.addActionListener(new actionListener());
+        programa.addActionListener(new actionListener());
 
         panelResultado.add(result);
         panelResultado.add(documento);
         panelResultado.add(web);
         panelResultado.add(programa);
-
-        panelCentral = new JPanel();
-        panelCentral.setLayout(new BorderLayout());
-
-        panelCentral.add(panelResultado,BorderLayout.PAGE_START);
-        panelCentral.add(panelDocumento, BorderLayout.CENTER);
 
         JPanel panelSouth = new JPanel();
         panelSouth.setLayout(new GridLayout(2, 1));
@@ -146,10 +82,10 @@ public class AñadirTarea {
         JLabel interno = new JLabel("Esta tarea es interna?");
         panelInterno.add(interno);
         ButtonGroup esInterno = new ButtonGroup();
-        esInterno.add(si);
-        esInterno.add(no);
-        panelInterno.add(si);
-        panelInterno.add(no);
+        esInterno.add(siInterno);
+        esInterno.add(noInterno);
+        panelInterno.add(siInterno);
+        panelInterno.add(noInterno);
         //ventana.add(panelInterno);
 
         JPanel panelFacturacion = new JPanel();//si es interno no debe salir esta pantalla
@@ -166,7 +102,7 @@ public class AñadirTarea {
         panelSouth.add(panelFacturacion);
 
         ventana.add(panelTitulo, BorderLayout.NORTH);
-        ventana.add(panelCentral, BorderLayout.CENTER);
+        ventana.add(panelFacturacion, BorderLayout.CENTER);
         ventana.add(panelSouth, BorderLayout.SOUTH);
 
         ventana.pack();
@@ -189,57 +125,30 @@ public class AñadirTarea {
     public String getHora(){
         return introducirHora.getText();
     }
-    public String getFormato(){
-        return introducirFormato.getText();
-    }
-    public String getNumPag(){
-        return introducirNumPag.getText();
-    }
-    public String getLenguajeWeb(){
-        return introducirLenguajeWeb.getText();
-    }
-    public String getEspDisc(){
-        return introducirEspacioEnDisco.getText();
-    }
-    public String getBackend(){
-        return introducirBackend.getText();
-    }
-    public String getNumLineasCodigo(){
-        return introducirNumLineas.getText();
-    }
-    public String getNumModulos(){
-        return introducirModulos.getText();
-    }
-    public String getLenguajeProg(){
-        return introducirLenguajeProg.getText();
-    }
     public String getCoste(){
         return introducirCoste.getText();
     }
+    public String getRes(){return res;}
+    public Boolean getInterno(){
+        if (siInterno.isSelected()) return true;
+        else return false;
+    }
 
-    public class itemListener implements ItemListener {
+    public class actionListener implements ActionListener {
 
         @Override
-        public void itemStateChanged(ItemEvent itemEvent) {
-            JRadioButton boton = (JRadioButton) itemEvent.getItem();
+        public void actionPerformed(ActionEvent actionEvent) {
+            JRadioButton boton = (JRadioButton) actionEvent.getSource();
             String resultado = boton.getText();
             switch (resultado) {
                 case "Documentación":
-                    System.out.println("hola patato");
-                    panelCentral.add(panelDocumento, BorderLayout.CENTER);
-                    ventana.add(panelCentral, BorderLayout.CENTER);
-                    SwingUtilities.updateComponentTreeUI(panelCentral);
+                    res = "Documentación";
                     break;
                 case "Web":
-                    System.out.println("hola patato1");
-                    panelCentral.add(panelWeb, BorderLayout.CENTER);
-                    ventana.add(panelCentral, BorderLayout.CENTER);
-                    SwingUtilities.updateComponentTreeUI(panelCentral);
+                    res = "Web";
                     break;
                 case "Programa":
-                    panelCentral.add(panelPrograma, BorderLayout.CENTER);
-                    ventana.add(panelCentral, BorderLayout.CENTER);
-                    SwingUtilities.updateComponentTreeUI(panelCentral);
+                    res = "Programa";
                     break;
             }
         }

@@ -19,33 +19,26 @@ public interface Vista {
     String getTitulo();
     String getDescripcion();
     String getIdentificador();
-    //String getInterno();
+    Boolean getInterno();
     int getPrioridad();
     int getHora();
 //gets de resultaods
     String getFormato();
     int getNumPag();
     int getEspDisc();
-    //Boolean getEstatica();
+    Boolean getEstatica();
     String getLenguajeWeb();
     String getLenguajeProg();
     String getBackend();
     int getNumLineasCodigo();
     int getNumModulos();
     double getCoste();
+    String getRes();
 
 //gets personas y tareas
     Persona getPersonaActual();
     Tarea getTareaActual();
     double getCosteCambiado();
 
-
-
-
-
-
-
-
     void actualizarVista();
-
 }

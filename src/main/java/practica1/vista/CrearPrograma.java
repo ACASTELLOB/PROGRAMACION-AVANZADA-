@@ -2,6 +2,8 @@ package practica1.vista;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CrearPrograma {
 
@@ -15,17 +17,41 @@ public class CrearPrograma {
     JTextField introducirNumLineas = new JTextField(20);
     JTextField introducirModulos = new JTextField(20);
 
+    JButton aceptar;
+
     public void ejecutar(){
         ventana = new JFrame();
 
+        aceptar = new JButton("Aceptar");
+
+        ventana.setLayout(new GridLayout(4, 2));
         ventana.add(lenguajeProg);
         ventana.add(introducirLenguajeProg);
         ventana.add(modulos);
         ventana.add(introducirModulos);
         ventana.add(numLineas);
         ventana.add(introducirNumLineas);
+        ventana.add(aceptar);
 
         ventana.pack();
         ventana.setVisible(true);
+    }
+
+    public String getNumLineasCodigo(){
+        return introducirNumLineas.getText();
+    }
+    public String getLenguajeProg(){
+        return introducirLenguajeProg.getText();
+    }
+    public String getNumModulos(){
+        return introducirModulos.getText();
+    }
+
+    class actionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+
+        }
     }
 }
