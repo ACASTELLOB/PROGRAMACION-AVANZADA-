@@ -18,6 +18,9 @@ import java.util.List;
 
 public class VentanaPrincipal implements Vista{
 
+    Persona personaActual;
+    Tarea tareaActual;
+
     JList listaPersonas;
     JList listaTareas;
 
@@ -170,6 +173,10 @@ public class VentanaPrincipal implements Vista{
         return añadirPersona.getCorreo();
     }
 
+    public Persona getPersonaActual(){return personaActual;}
+
+    public Tarea getTareaActual(){return tareaActual;}
+
     public class EscuchadorListaPersona implements ListSelectionListener {
 
         List<Persona> personas;
@@ -184,7 +191,8 @@ public class VentanaPrincipal implements Vista{
         public void valueChanged(ListSelectionEvent listSelectionEvent) {
             JList lista = (JList) listSelectionEvent.getSource();
             int indice = lista.getSelectedIndex();
-            persona.setText(personas.get(indice).toString());
+            personaActual = personas.get(indice);
+            persona.setText(personaActual.toString());
             SwingUtilities.updateComponentTreeUI(persona);
         }
     }
@@ -203,7 +211,8 @@ public class VentanaPrincipal implements Vista{
         public void valueChanged(ListSelectionEvent listSelectionEvent) {
             JList lista = (JList) listSelectionEvent.getSource();
             int indice = lista.getSelectedIndex();
-            tarea.setText(tareas.get(indice).toString());
+            tareaActual = tareas.get(indice);
+            tarea.setText(tareaActual.toString());
             SwingUtilities.updateComponentTreeUI(tarea);
         }
     }
