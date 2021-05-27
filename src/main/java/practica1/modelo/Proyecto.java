@@ -97,8 +97,6 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
                 }
             }
         }
-
-
     }
 
     public void añadirEliminarPersona(String nombrePersona, String tituloTarea){

@@ -237,7 +237,9 @@ public class VentanaPrincipal implements Vista{
                     cambiarCoste.ejecutar();
                     break;
                 case "Mostrar tareas sin responsable":
-
+                    MostrarTareaSinPersonas mostrarTareaSinPersonas = new MostrarTareaSinPersonas();
+                    mostrarTareaSinPersonas.setModelo(proyecto);
+                    mostrarTareaSinPersonas.ejecutar();
                     break;
                 case "Guardar":
                     try {
