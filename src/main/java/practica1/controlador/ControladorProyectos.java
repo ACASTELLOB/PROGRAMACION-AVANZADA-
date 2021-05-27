@@ -44,23 +44,21 @@ public class ControladorProyectos implements Controlador{
 
     }
 
+
+
     @Override
     public void añadirTarea() {
-
-    }
-
-    /*@Override
-    public void añadirTarea() {
         String tituloTarea = vista.getTitulo();
-        //String tipoResultado =vista.getResultado();
+        String tipoResultado =vista.getRes();
         int prioridad = vista.getPrioridad();
         String descripcion =vista.getDescripcion();
-        String identificador = vista.getIdentificador();
+        String ident = vista.getIdentificador();
         int horas= vista.getHora();
+        Boolean esInterno= vista.getInterno();
 
         switch (tipoResultado) {
 
-            case "D":
+            case "Documentación":
                 Tarea tarea = crearDocumentación(ident, horas, esInterno, tituloTarea, descripcion, prioridad);
                 try {
                     modelo.añadirTarea(tarea);
@@ -68,7 +66,7 @@ public class ControladorProyectos implements Controlador{
                     System.err.println(e.getMessage());
                 }
                 break;
-            case "W":
+            case "Web":
                 tarea = crearWeb(ident, horas, esInterno, tituloTarea, descripcion, prioridad);
                 try {
                     modelo.añadirTarea(tarea);
@@ -76,7 +74,7 @@ public class ControladorProyectos implements Controlador{
                     System.err.println (e.getMessage());
                 }
                 break;
-            case "P":
+            case "Programa":
                 tarea = crearPrograma(ident, horas, esInterno, tituloTarea, descripcion, prioridad);
                 try {
                     modelo.añadirTarea(tarea);
@@ -101,7 +99,7 @@ public class ControladorProyectos implements Controlador{
     public  Tarea crearWeb( String ident, int horas, boolean esInterno, String tituloTarea, String descripcion, int prioridad){
         String lenguaje = vista.getLenguajeWeb();
         String backend = vista.getBackend();
-        boolean esEstatica = estatica.equals("S");
+        boolean esEstatica = vista.getEstatica;
         PagWeb web = new PagWeb(ident, horas, esInterno, esEstatica, lenguaje, backend);
         double coste= vista.getCoste();
         Facturacion facturacion = crearFacturacion();
@@ -114,21 +112,21 @@ public class ControladorProyectos implements Controlador{
         int numModulos = vista.getNumModulos();
         Programa prog = new Programa(ident, horas, esInterno, lenguaje, numLineasCodigo, numModulos);
         double coste= vista.getCoste();
-        Facturacion facturacion = crearFacturacion(teclado);
+        Facturacion facturacion = crearFacturacion();
         Tarea tarea = new Tarea(tituloTarea,descripcion, prog, prioridad,coste, facturacion);
         return tarea;
     }
 
-    public static Facturacion crearFacturacion(){
-        String tipoFacturación = teclado.nextLine().toUpperCase();
+    public  Facturacion crearFacturacion(){
+        String tipoFacturación = vista.getFacturación();
         switch( tipoFacturación){
-            case "C":
+            case "Interno":
                 Facturacion facturacion = new ConsumoInterno();
                 return facturacion;
-            case "D":
+            case "Descuento":
                 facturacion = new Descuento();
                 return facturacion;
-            case "U":
+            case "Urgente":
                 facturacion =new Urgente();
                 return facturacion;
         }

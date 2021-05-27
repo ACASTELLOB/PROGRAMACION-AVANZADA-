@@ -8,6 +8,7 @@ public interface Modelo {
     void setVista(Vista vista);
     void añadirPersona(Persona persona);
 
+
     Boolean cambiarCosteTarea(String titulo, double coste);
 
     Boolean finalizarTarea(String titulo);
@@ -17,6 +18,9 @@ public interface Modelo {
     void añadirEliminarPersona(String nombrePersona, String tituloTarea);
 
     String getNombre();
+
+    void añadirTarea(Tarea tarea);
+
     List<Persona> listarPersonas();
     List<Tarea> listarTareas();
     List<Persona> listarPersonasSinTarea();
