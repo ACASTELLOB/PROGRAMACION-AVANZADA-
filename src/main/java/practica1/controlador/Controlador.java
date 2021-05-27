@@ -6,4 +6,5 @@ import practica1.vista.Vista;
 public interface Controlador {
     void setModelo(Modelo modelo);
     void setVista(Vista vista);
+    void añadirPersona();
 }
