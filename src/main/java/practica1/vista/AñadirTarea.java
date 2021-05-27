@@ -34,6 +34,7 @@ public class AñadirTarea {
     JRadioButton descuento = new JRadioButton("descuento");
     JRadioButton urgente = new JRadioButton("urgente");
 
+    JButton siguiente;
 
     public void ejecutar() {
 
@@ -122,6 +123,9 @@ public class AñadirTarea {
 
                     break;
                 case "Programa":
+
+                    break;
+                case "Siguiente":
 
                     break;
             }
