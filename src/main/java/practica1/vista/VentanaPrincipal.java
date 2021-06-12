@@ -300,6 +300,7 @@ public class VentanaPrincipal implements Vista{
         public void valueChanged(ListSelectionEvent listSelectionEvent) {
             JList lista = (JList) listSelectionEvent.getSource();
             int indice = lista.getSelectedIndex();
+            if(indice == -1) return;
             personaActual = personas.get(indice);
             persona.setText(personaActual.toString());
             SwingUtilities.updateComponentTreeUI(persona);
@@ -320,6 +321,7 @@ public class VentanaPrincipal implements Vista{
         public void valueChanged(ListSelectionEvent listSelectionEvent) {
             JList lista = (JList) listSelectionEvent.getSource();
             int indice = lista.getSelectedIndex();
+            if(indice == -1) return;
             tareaActual = tareas.get(indice);
             tarea.setText(tareaActual.toString());
             SwingUtilities.updateComponentTreeUI(tarea);
