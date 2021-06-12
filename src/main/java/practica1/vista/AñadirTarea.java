@@ -212,6 +212,7 @@ public class AñadirTarea {
                             crearPrograma.ejecutar(controlador);
                             break;
                     }
+            ventana.dispose();
         }
     }
 }

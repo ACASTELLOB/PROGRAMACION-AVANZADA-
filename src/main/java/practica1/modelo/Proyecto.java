@@ -6,6 +6,9 @@ import practica1.modelo.listas.UtilidadesParaListas;
 import practica1.modelo.listas.tieneLista;
 import practica1.vista.Vista;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,10 +83,10 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
         for(Tarea elem:tareas){
             if(elem.titulo.equals(titulo)){
                 elem.finalizar();
+                vista.actualizarVista();
                 return true;
             }
         }
-        vista.actualizarVista();
         return false;
     }
 
@@ -129,6 +132,19 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
             }
         }
         vista.actualizarVista();
+    }
+
+    @Override
+    public void guardar(){
+        try {
+            FileOutputStream fos = new FileOutputStream("proyecto.bin");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(this);
+            oos.close();
+            vista.mostrarMensajeInformativo("Guardado con exito", "Información");
+        } catch (IOException e) {
+            vista.mostrarMensajeError("Error al guardar", "Error");
+        }
     }
 
     @Override

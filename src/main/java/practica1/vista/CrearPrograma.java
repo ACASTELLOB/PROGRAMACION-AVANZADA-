@@ -59,6 +59,7 @@ public class CrearPrograma {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             controlador.añadirTarea();
+            ventana.dispose();
         }
     }
 }

@@ -42,4 +42,7 @@ public interface Vista {
     double getCosteCambiado();
 
     void actualizarVista();
+
+    void mostrarMensajeError(String mensaje, String titulo);
+    void mostrarMensajeInformativo(String mensaje, String titulo);
 }

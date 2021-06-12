@@ -30,6 +30,11 @@ public class ControladorProyectos implements Controlador{
     }
 
     @Override
+    public void guardar(){
+        modelo.guardar();
+    }
+
+    @Override
     public void añadirPersona() {
 
         String nombre= vista.getNombre();

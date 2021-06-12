@@ -65,6 +65,7 @@ public class CrearPagWeb {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             controlador.añadirTarea();
+            ventana.dispose();
         }
     }
 }

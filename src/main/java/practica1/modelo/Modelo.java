@@ -8,6 +8,7 @@ public interface Modelo {
     void setVista(Vista vista);
     void añadirPersona(Persona persona);
 
+    void guardar();
 
     Boolean cambiarCosteTarea(String titulo, double coste);
 

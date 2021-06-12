@@ -14,7 +14,7 @@ public class CrearDocumentacion {
     JFrame ventana;
 
     JLabel formato = new JLabel("Introduce el formato del documento");
-    JLabel espacioEnDisco = new JLabel("Introduce el espacioEnDisco del documento");
+    JLabel espacioEnDisco = new JLabel("Introduce el número de páginas");
     JLabel numPag = new JLabel("Introduce el espacio en disco de tu documento");
 
     JTextField introducirFormato = new JTextField(20);
@@ -57,6 +57,7 @@ public class CrearDocumentacion {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             controlador.añadirTarea();
+            ventana.dispose();
         }
     }
 }

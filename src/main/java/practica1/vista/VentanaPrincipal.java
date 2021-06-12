@@ -140,6 +140,17 @@ public class VentanaPrincipal implements Vista{
         ventana.setVisible(true);
     }
 
+    @Override
+    public void mostrarMensajeError(String mensaje, String titulo) {
+        JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.WARNING_MESSAGE);
+    }
+
+    @Override
+    public void mostrarMensajeInformativo(String mensaje, String titulo) {
+        JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
     public void actualizarVista(){
         List<Persona> personas = proyecto.listarPersonas();
         String[] datosPersona = new String[personas.size()];
@@ -365,14 +376,7 @@ public class VentanaPrincipal implements Vista{
                     controlador.IntrodELiminaPersonaTarea();
                     break;
                 case "Guardar":
-                    try {
-                        FileOutputStream fos = new FileOutputStream("proyecto.bin");
-                        ObjectOutputStream oos = new ObjectOutputStream(fos);
-                        oos.writeObject(proyecto);
-                        oos.close();
-                    } catch (IOException e) {
-                        System.out.println("Error al guardar el proyecto");
-                    }
+                    controlador.guardar();
                     break;
             }
         }

@@ -11,6 +11,7 @@ public interface Controlador {
     void cambiarCoste();
     void añadirResponsable();
     void finalizarTarea();
+    void guardar();
 
     void IntrodELiminaPersonaTarea();
 }
