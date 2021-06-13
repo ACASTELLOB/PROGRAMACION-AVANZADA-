@@ -6,10 +6,7 @@ import practica1.modelo.listas.UtilidadesParaListas;
 import practica1.modelo.listas.tieneLista;
 import practica1.vista.Vista;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,23 +28,34 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
     }
 
     public void añadirPersona(Persona persona){
-        if(UtilidadesParaListas.claveUnica(persona, this)){
-            throw new PersonasException("La persona ya esta añadida al proyecto");
-        }
+        try{
+            if(UtilidadesParaListas.claveUnica(persona, this)){
+                throw new PersonasException("La persona ya esta añadida al proyecto");
+            }
 
-        personas.add(persona);
-        vista.actualizarVista();
+            personas.add(persona);
+            vista.actualizarVista();
+            vista.mostrarMensajeInformativo("Se ha añadido correctamente", "Añadir persona");
+        }catch(PersonasException e){
+            vista.mostrarMensajeError(e.getMessage(), "Añadir persona");
+        }
     }
 
     @Override
     public void añadirTarea(Tarea tarea) {
-        for(Tarea elem:tareas){
-            if(tarea.titulo.equals(elem.titulo)){
-                throw new TareaExcepcion("La tarea ya existe");
+        try {
+            for (Tarea elem : tareas) {
+                if (tarea.titulo.equals(elem.titulo)) {
+                    throw new TareaExcepcion("La tarea ya existe");
+                }
             }
+            tareas.add(tarea);
+            vista.actualizarVista();
+            vista.mostrarMensajeInformativo("Tarea añadida correctamente", "Añadir tarea");
+        }catch (TareaExcepcion e){
+            vista.mostrarMensajeError(e.getMessage(), "Añadir tarea");
+        }catch (NullPointerException e){
         }
-        tareas.add(tarea);
-        vista.actualizarVista();
     }
 
     public List<Persona> listarPersonas(){
@@ -68,6 +76,7 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
 
     @Override
     public Boolean cambiarCosteTarea(String titulo, double coste){
+        try{
         for(Tarea elem:tareas){
             if(elem.titulo.equals(titulo)){
                 elem.cambiarCoste(coste);
@@ -75,17 +84,26 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
             }
         }
         vista.actualizarVista();
+        }catch (Exception e){
+            vista.mostrarMensajeError("Error al cambiar el coste", "Error Coste");
+        }
         return false;
+
     }
 
     @Override
     public Boolean finalizarTarea(String titulo){
-        for(Tarea elem:tareas){
-            if(elem.titulo.equals(titulo)){
-                elem.finalizar();
-                vista.actualizarVista();
-                return true;
+        try {
+            for (Tarea elem : tareas) {
+                if (elem.titulo.equals(titulo)) {
+                    elem.finalizar();
+                    vista.actualizarVista();
+                    vista.mostrarMensajeInformativo("Tarea finalizada con exito", "Tarea finalizada");
+                    return true;
+                }
             }
+        }catch (TareaExcepcion e){
+            vista.mostrarMensajeError(e.getMessage(), "Error finalizar tarea");
         }
         return false;
     }
@@ -136,15 +154,20 @@ public class Proyecto implements tieneLista<Persona>, Serializable, Modelo {
 
     @Override
     public void guardar(){
+        FileOutputStream fos = null;
         try {
-            FileOutputStream fos = new FileOutputStream("proyecto.bin");
+            fos = new FileOutputStream("proyecto.bin");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(this);
             oos.close();
             vista.mostrarMensajeInformativo("Guardado con exito", "Información");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
-            vista.mostrarMensajeError("Error al guardar", "Error");
+            e.printStackTrace();
         }
+
+
     }
 
     @Override

@@ -5,7 +5,9 @@ import practica1.modelo.Modelo;
 import practica1.modelo.Persona;
 import practica1.modelo.Tarea;
 
-public interface Vista {
+import java.io.Serializable;
+
+public interface Vista extends Serializable {
 
     void setControlador(Controlador controlador);
     void setModelo(Modelo modelo);

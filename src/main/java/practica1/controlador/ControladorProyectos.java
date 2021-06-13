@@ -6,8 +6,6 @@ import practica1.modelo.Resultados.Documentacion;
 import practica1.modelo.Resultados.PagWeb;
 import practica1.modelo.Resultados.Programa;
 import practica1.modelo.Tarea;
-import practica1.modelo.excepciones.FechasException;
-import practica1.modelo.excepciones.PersonasException;
 import practica1.modelo.excepciones.TareaExcepcion;
 import practica1.modelo.facturación.ConsumoInterno;
 import practica1.modelo.facturación.Descuento;
@@ -15,7 +13,7 @@ import practica1.modelo.facturación.Facturacion;
 import practica1.modelo.facturación.Urgente;
 import practica1.vista.Vista;
 
-import java.util.Scanner;
+import java.io.Serializable;
 
 public class ControladorProyectos implements Controlador{
     Modelo modelo;
@@ -36,17 +34,10 @@ public class ControladorProyectos implements Controlador{
 
     @Override
     public void añadirPersona() {
-
         String nombre= vista.getNombre();
         String correo= vista.getCorreo();
         Persona persona = new Persona(nombre, correo);
-        try {
-            modelo.añadirPersona(persona);
-            System.out.println("Persona añadida");
-        }catch (PersonasException e){
-            System.err.println(e.getMessage());
-        }
-
+        modelo.añadirPersona(persona);
     }
 
 
@@ -60,53 +51,58 @@ public class ControladorProyectos implements Controlador{
         String ident = vista.getIdentificador();
         int horas= vista.getHora();
         Boolean esInterno= vista.getInterno();
-
-        switch (tipoResultado) {
-
-            case "Documentación":
-                Tarea tarea = crearDocumentación(ident, horas, esInterno, tituloTarea, descripcion, prioridad);
-                try {
-                    modelo.añadirTarea(tarea);
-                }catch (TareaExcepcion e){
-                    System.err.println(e.getMessage());
-                }
-                break;
-            case "Web":
-                tarea = crearWeb(ident, horas, esInterno, tituloTarea, descripcion, prioridad);
-                try {
-                    modelo.añadirTarea(tarea);
-                }catch (TareaExcepcion e){
-                    System.err.println (e.getMessage());
-                }
-                break;
-            case "Programa":
-                tarea = crearPrograma(ident, horas, esInterno, tituloTarea, descripcion, prioridad);
-                try {
-                    modelo.añadirTarea(tarea);
-                }catch (TareaExcepcion e){
-                    System.err.println(e.getMessage());
-                }
-                break;
+        if (horas >= 0 && prioridad >= 0){
+            switch (tipoResultado) {
+                case "Documentación":
+                    Tarea tarea = crearDocumentación(ident, horas, esInterno, tituloTarea, descripcion, prioridad);
+                    try {
+                        modelo.añadirTarea(tarea);
+                    }catch (TareaExcepcion e){
+                    }
+                    break;
+                case "Web":
+                    tarea = crearWeb(ident, horas, esInterno, tituloTarea, descripcion, prioridad);
+                    try {
+                        modelo.añadirTarea(tarea);
+                    }catch (TareaExcepcion e){
+                    }
+                    break;
+                case "Programa":
+                    tarea = crearPrograma(ident, horas, esInterno, tituloTarea, descripcion, prioridad);
+                    try {
+                        modelo.añadirTarea(tarea);
+                    }catch (TareaExcepcion e){
+                    }
+                    break;
+            }
         }
+
+
     }
     public  Tarea crearDocumentación(String ident, int horas, boolean esInterno, String tituloTarea, String descripcion, int prioridad){
 
         String format = vista.getFormato();
         int pag = vista.getNumPag();
         int esp = vista.getEspDisc();
-        Documentacion documento = new Documentacion(ident, horas,  esInterno, format, pag, esp);
         double coste= vista.getCoste();
+        if (pag < 0 || esp < 0 || coste < 0){
+            return null;
+        }
+        Documentacion documento = new Documentacion(ident, horas,  esInterno, format, pag, esp);
         Facturacion facturacion = crearFacturacion();
         Tarea tarea = new Tarea(tituloTarea,descripcion, documento, prioridad, coste, facturacion);
         return tarea;
-
     }
+
     public  Tarea crearWeb( String ident, int horas, boolean esInterno, String tituloTarea, String descripcion, int prioridad){
         String lenguaje = vista.getLenguajeWeb();
         String backend = vista.getBackend();
+        double coste= vista.getCoste();
+        if (coste < 0){
+            return null;
+        }
         boolean esEstatica = vista.getEstatica();
         PagWeb web = new PagWeb(ident, horas, esInterno, esEstatica, lenguaje, backend);
-        double coste= vista.getCoste();
         Facturacion facturacion = crearFacturacion();
         Tarea tarea = new Tarea(tituloTarea,descripcion, web, prioridad,coste, facturacion);
         return tarea;
@@ -115,8 +111,11 @@ public class ControladorProyectos implements Controlador{
         String lenguaje = vista.getLenguajeProg();
         int numLineasCodigo = vista.getNumLineasCodigo();
         int numModulos = vista.getNumModulos();
-        Programa prog = new Programa(ident, horas, esInterno, lenguaje, numLineasCodigo, numModulos);
         double coste= vista.getCoste();
+        if (numLineasCodigo < 0 || numModulos < 0 || coste < 0){
+            return null;
+        }
+        Programa prog = new Programa(ident, horas, esInterno, lenguaje, numLineasCodigo, numModulos);
         Facturacion facturacion = crearFacturacion();
         Tarea tarea = new Tarea(tituloTarea,descripcion, prog, prioridad,coste, facturacion);
         return tarea;
@@ -139,21 +138,14 @@ public class ControladorProyectos implements Controlador{
     }
 
     public void cambiarCoste(){
-        Tarea tarea= vista.getTareaActual();
-        String titulo = tarea.titulo;
-        double coste = vista.getCosteCambiado();
-
-        Boolean costeCambiado = false;
-
         try {
-            costeCambiado = modelo.cambiarCosteTarea(titulo,coste);
-        }catch (TareaExcepcion e){
-            System.err.printf("No se ha podido cambiar el coste de la tarea " + e.getMessage());
-        }
-        if (costeCambiado) {
-            System.out.println("Coste de la tarea cambiado con exito");
-        } else {
-            System.out.println("No se ha podido cambiar el coste de la tarea");
+            Tarea tarea= vista.getTareaActual();
+            String titulo = tarea.titulo;
+            double coste = vista.getCosteCambiado();
+            if (coste >= 0){
+                modelo.cambiarCosteTarea(titulo,coste);
+            }
+        }catch (NullPointerException e){
         }
     }
 
@@ -163,9 +155,7 @@ public class ControladorProyectos implements Controlador{
         Persona persona = vista.getPersonaActual();
         try{
             modelo.responsable(persona.nombre,tarea.titulo);
-            System.out.println("Responsable añadido");
-        }catch(PersonasException e){
-            System.err.println(e.getMessage());
+        }catch (NullPointerException e){
         }
 
     }
@@ -173,16 +163,9 @@ public class ControladorProyectos implements Controlador{
     @Override
     public void finalizarTarea(){
         Tarea tarea = vista.getTareaActual();
-        Boolean hecha = false;
         try {
-            hecha = modelo.finalizarTarea(tarea.titulo);
-        }catch (FechasException e){
-            System.err.println(e.getMessage());
-        }
-        if (hecha) {
-            System.out.println("Tarea Finalizada");
-        } else {
-            System.out.println("No se encuentra el titulo de la tarea");
+            modelo.finalizarTarea(tarea.titulo);
+        }catch (NullPointerException e){
         }
     }
 
@@ -192,13 +175,8 @@ public class ControladorProyectos implements Controlador{
         Tarea tarea= vista.getTareaActual();
         try {
             modelo.añadirEliminarPersona(persona.nombre, tarea.titulo);
-            System.out.println("Persona añadida o eliminada");
-        }catch(PersonasException e){
-            System.err.println(e.getMessage());
+        }catch(NullPointerException e){
         }
-
     }
-
-
 
 }

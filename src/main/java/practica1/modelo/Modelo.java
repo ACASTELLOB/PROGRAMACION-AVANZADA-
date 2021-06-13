@@ -2,9 +2,10 @@ package practica1.modelo;
 
 import practica1.vista.Vista;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface Modelo {
+public interface Modelo extends Serializable {
     void setVista(Vista vista);
     void añadirPersona(Persona persona);
 

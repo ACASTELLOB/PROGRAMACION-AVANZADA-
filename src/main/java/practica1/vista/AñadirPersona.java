@@ -2,14 +2,13 @@ package practica1.vista;
 
 import practica1.controlador.Controlador;
 
-import practica1.modelo.Modelo;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 
-public class AñadirPersona{
+public class AñadirPersona implements Serializable {
 
     JFrame ventana;
     private Controlador controlador;

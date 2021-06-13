@@ -2,7 +2,6 @@ package practica1.vista;
 
 import practica1.controlador.Controlador;
 import practica1.controlador.ControladorProyectos;
-import practica1.modelo.Modelo;
 import practica1.modelo.Proyecto;
 
 import javax.swing.*;
@@ -45,18 +44,26 @@ public class VentanaCarga {
                 try {
                     FileInputStream fis = new FileInputStream("proyecto.bin");
                     ObjectInputStream ois = new ObjectInputStream(fis);
-                    Modelo proyecto = (Proyecto) ois.readObject();
+                    Proyecto proyecto = (Proyecto) ois.readObject();
                     ois.close();
 
                     Controlador controlador = new ControladorProyectos();
                     Vista ventanaP = new VentanaPrincipal();
 
+                    controlador.setModelo(proyecto);
+                    controlador.setVista(ventanaP);
+
+                    ventanaP.setControlador(controlador);
+                    ventanaP.setModelo(proyecto);
+
+                    proyecto.setVista(ventanaP);
+
                     ventanaP.ejecutar();
                     ventana.dispose();
                 } catch (IOException e) {
                     System.out.println("No se ha encontrado el fichero, debes crear uno nuevo:");
-                } catch (ClassNotFoundException ce) {
-                    System.out.println("No se ha encontrado la clase necesaria para cargar el fichero");
+                }catch (ClassNotFoundException e){
+                    System.out.println("Error al cargar el proyecto");
                 }
             }else{
                 VentanaNombre ventanaN = new VentanaNombre();

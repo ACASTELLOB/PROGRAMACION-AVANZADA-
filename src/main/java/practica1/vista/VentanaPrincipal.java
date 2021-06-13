@@ -11,9 +11,7 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.List;
 
 public class VentanaPrincipal implements Vista{
@@ -217,13 +215,22 @@ public class VentanaPrincipal implements Vista{
 
     @Override
     public int getPrioridad() {
-
-        return Integer.parseInt(añadirTarea.getPrioridad());
+        try{
+            return Integer.parseInt(añadirTarea.getPrioridad());
+        }catch (NumberFormatException e){
+            mostrarMensajeError("Se ha detectado un campo con el formato erroneo","Formato erroneo");
+        }
+        return -1;
     }
 
     @Override
     public int getHora() {
-        return Integer.parseInt(añadirTarea.getHora());
+        try{
+            return Integer.parseInt(añadirTarea.getHora());
+        }catch (NumberFormatException e){
+            mostrarMensajeError("Se ha detectado un campo con el formato erroneo","Formato erroneo");
+        }
+        return -1;
     }
 
     @Override
@@ -233,12 +240,22 @@ public class VentanaPrincipal implements Vista{
 
     @Override
     public int getNumPag() {
-        return Integer.parseInt(crearDocumentacion.getNumPag());
+        try{
+            return Integer.parseInt(crearDocumentacion.getNumPag());
+        }catch (NumberFormatException e){
+            mostrarMensajeError("Se ha detectado un campo con el formato erroneo","Formato erroneo");
+        }
+        return -1;
     }
 
     @Override
     public int getEspDisc() {
-        return Integer.parseInt(crearDocumentacion.getEspDisc());
+        try{
+            return Integer.parseInt(crearDocumentacion.getEspDisc());
+        }catch (NumberFormatException e){
+            mostrarMensajeError("Se ha detectado un campo con el formato erroneo","Formato erroneo");
+        }
+        return -1;
     }
 
     @Override
@@ -258,19 +275,36 @@ public class VentanaPrincipal implements Vista{
 
     @Override
     public int getNumLineasCodigo() {
-        return Integer.parseInt(crearPrograma.getNumLineasCodigo());
+        try{
+            return Integer.parseInt(crearPrograma.getNumLineasCodigo());
+        }catch (NumberFormatException e){
+            mostrarMensajeError("Se ha detectado un campo con el formato erroneo","Formato erroneo");
+        }
+        return -1;
     }
 
     @Override
     public int getNumModulos() {
-        return Integer.parseInt(crearPrograma.getNumModulos());
+        try{
+            return Integer.parseInt(crearPrograma.getNumModulos());
+        }catch (NumberFormatException e){
+            mostrarMensajeError("Se ha detectado un campo con el formato erroneo","Formato erroneo");
+        }
+        return -1;
     }
 
     @Override
     public String getLenguajeProg(){return crearPrograma.getLenguajeProg();}
 
     @Override
-    public double getCoste(){return Double.parseDouble(añadirTarea.getCoste());}
+    public double getCoste(){
+        try{
+            return Double.parseDouble(añadirTarea.getCoste());
+        }catch (NumberFormatException e){
+            mostrarMensajeError("Se ha detectado un campo con el formato erroneo","Formato erroneo");
+        }
+        return -1;
+    }
 
     @Override
     public String getRes() {
@@ -283,7 +317,14 @@ public class VentanaPrincipal implements Vista{
     }
 
     @Override
-    public double getCosteCambiado(){return Double.parseDouble(cambiarCoste.getCoste());}
+    public double getCosteCambiado(){
+        try{
+            return Double.parseDouble(cambiarCoste.getCoste());
+        }catch (NumberFormatException e){
+            mostrarMensajeError("Se ha detectado un campo con el formato erroneo","Formato erroneo");
+        }
+        return -1;
+    }
 
     public void setCrearDocumentacion(CrearDocumentacion crearDocumentacion){
         this.crearDocumentacion = crearDocumentacion;

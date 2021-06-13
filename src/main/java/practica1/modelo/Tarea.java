@@ -77,7 +77,8 @@ public class Tarea implements tieneLista<Persona>, tieneClave<String>, Serializa
         }
         tarea.append("Descripción:" +descripcion + "\n");
         tarea.append(resultadoEsperado.toString()+"\n");
-        tarea.append("Facturación:"+ factura);
+        tarea.append("Facturación:"+ factura+"\n");
+        tarea.append("Coste:" + coste);
 
         return tarea.toString();
     }

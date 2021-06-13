@@ -1,5 +1,7 @@
 package practica1.modelo.facturación;
 
-public interface Facturacion {
+import java.io.Serializable;
+
+public interface Facturacion extends Serializable {
     double calculoFacturación(double coste);
 }

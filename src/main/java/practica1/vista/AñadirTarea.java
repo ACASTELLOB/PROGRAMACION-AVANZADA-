@@ -8,8 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.Serializable;
 
-public class AñadirTarea {
+public class AñadirTarea implements Serializable     {
 
     Controlador controlador;
     VentanaPrincipal ventanaPrincipal;
@@ -23,7 +24,7 @@ public class AñadirTarea {
     JLabel prioridad = new JLabel("Introducir la prioridad de la tarea:");
     JLabel descripcion = new JLabel("Introduce la descripción de la tarea");
     JLabel coste = new JLabel("Introducre el coste de la tarea");
-    JLabel hora = new JLabel("Introduce el número de hroas de la tarea:");
+    JLabel hora = new JLabel("Introduce el número de horas de la tarea:");
 
     JTextField introducirTitulo = new JTextField(20);
     JTextField introducirIdentificador = new JTextField(20);
@@ -167,7 +168,6 @@ public class AñadirTarea {
         public void actionPerformed(ActionEvent actionEvent) {
             JRadioButton boton = (JRadioButton) actionEvent.getSource();
             String resultado = boton.getText();
-            System.out.println(resultado);
             switch (resultado) {
                 case "Documentación":
                     res = "Documentación";
@@ -179,7 +179,6 @@ public class AñadirTarea {
                     res = "Programa";
                     break;
                 case "Sí":
-                    System.out.println("puta");
                     descuento.setEnabled(false);
                     urgente.setEnabled(false);
                     break;
